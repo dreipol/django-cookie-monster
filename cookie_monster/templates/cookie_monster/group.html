@@ -1,0 +1,29 @@
+{% extends 'cookie_monster/base.html' %}
+
+{% block cookie_group %}
+    <form action="/">
+        {% if COOKIE_GROUP %}
+            <div class="cookieMakerContainerContent">
+
+                {% for cookie in COOKIE_GROUP %}
+                    <fieldset>
+                        <input type="checkbox" value="{{ cookie.cookie_title }}"
+                               {% if cookie.input_disabled %}disabled="{{ cookie.input_disabled }}"
+                               checked{% endif %}>
+                        <label for="checkmark">{{ cookie.cookie_title }}</label>
+                    </fieldset>
+                {% endfor %}
+
+                <div class="cookieMakerContainerGroupButton">
+                    <a onClick="setSelectedCookies();">{{ COOKIE_BASE.button_labels.cookie_group_set_choice_button_label }}</a>
+                </div>
+                <div class="cookieMakerContainerBaseButton">
+                    <a onClick="setAllCookies();">{{ COOKIE_BASE.button_labels.cookie_group_set_all_button_label }}</a>
+                </div>
+            </div>
+
+        {% else %}
+            <p class="cookieMakerWarning">{{ COOKIE_GROUP_WARNING }}</p>
+        {% endif %}
+    </form>
+{% endblock %}
