@@ -1,21 +1,36 @@
+{% load cookie_monster static %}
 
-{% comment %}
-As the developer of this package, don't place anything here if you can help it
-since this allows developers to have interoperability between your template
-structure and their own.
+{% block banner %}
+    <div class="cookieMakerContainer" id="cookieMakerContainer">
+        <div class="cookieMakerContainerTitle">
+            <h3>{{ COOKIE_BASE.banner_title }}</h3>
+        </div>
 
-Example: Developer melding the 2SoD pattern to fit inside with another pattern::
+        <div class="cookieMakerContainerContent">
+            <p>{{ COOKIE_BASE.banner_text }}
+                {% if COOKIE_BASE.cookie_policy.href %}
+                    {{ COOKIE_BASE.cookie_policy.help_text }}
+                    <a href="{{ COOKIE_BASE.cookie_policy.href }}">{{ COOKIE_BASE.cookie_policy.label }}</a>
+                {% endif %}
+            </p>
+        </div>
 
-    {% extends "base.html" %}
-    {% load static %}
+        {% block cookie_group %}
+            <div class="cookieMakerContainerBaseButton">
+                <a onClick="setCookieBase();">{{ COOKIE_BASE.button_labels.cookie_base_button_label }}</a>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
 
-    <!-- Their site uses old school block layout -->
-    {% block extra_js %}
+<script>
+    window.__js_base_cookie_bridge = {
+        cookie_identifier: "{{ COOKIE_BASE.cookie_identifier }}",
+        cookie_title: "{{ COOKIE_BASE.cookie_title }}",
+        cookie_age: "{{ COOKIE_BASE.cookie_age }}",
+    }
+</script>
 
-        <!-- Your package using 2SoD block layout -->
-        {% block javascript %}
-            <script src="{% static 'js/ninja.js' %}" type="text/javascript"></script>
-        {% endblock javascript %}
+<link rel="stylesheet" type="text/css" href="{% static "cookie_monster/css/styles.css" %}" async/>
+<script src="{% static "cookie_monster/js/base.js" %}" async></script>
 
-    {% endblock extra_js %}
-{% endcomment %}
