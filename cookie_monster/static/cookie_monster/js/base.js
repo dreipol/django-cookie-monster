@@ -1,9 +1,9 @@
 (function() {
-    let BANNER_CLASSNAME = 'cookie-monster-banner';
-    let COOKIE_IDENTIFIER = window.__js_base_cookie_bridge.cookie_identifier;
-    // let COOKIE_AGE = window.__js_base_cookie_bridge.cookie_age;
-    let COOKIE_AGE = 604800;
-    let BANNER_BTN_DATA_ATTR = 'data-cookiemonster-accept';
+    var BANNER_CLASSNAME = 'cookie-monster-banner';
+    var COOKIE_IDENTIFIER = window.__js_base_cookie_bridge.cookie_identifier;
+    // var COOKIE_AGE = window.__js_base_cookie_bridge.cookie_age;
+    var COOKIE_AGE = 604800;
+    var BANNER_BTN_DATA_ATTR = 'data-cookiemonster-accept';
 
     /**
      * Create facet for base classname
@@ -11,7 +11,7 @@
      * @return {string}
      */
     function createFacet(name) {
-        return `${ BANNER_CLASSNAME }__${ name }`;
+        return BANNER_CLASSNAME + '__' + name;
     }
 
     /**
@@ -19,7 +19,7 @@
      */
     function acceptAllCookies() {
         createCookie(COOKIE_IDENTIFIER, getAllCookies());
-        activateBanner(`.${ BANNER_CLASSNAME }`, false);
+        activateBanner('.' + BANNER_CLASSNAME, false);
     }
 
     /**
@@ -27,7 +27,7 @@
      */
     function acceptSelectedCookies() {
         createCookie(COOKIE_IDENTIFIER, getCheckedCookies());
-        activateBanner(`.${ BANNER_CLASSNAME }`, false);
+        activateBanner('.' + BANNER_CLASSNAME, false);
     }
 
     /**
@@ -39,7 +39,7 @@
             return false;
         }
 
-        let cookies = document.cookie.split(/[;\s=]+/);
+        var cookies = document.cookie.split(/[;\s=]+/);
         return cookies.indexOf(COOKIE_IDENTIFIER) !== -1;
     }
 
@@ -48,7 +48,7 @@
      * @return {string[]}
      */
     function getCheckedCookies() {
-        return Array.from(document.querySelectorAll(`.${ BANNER_CLASSNAME } input[type="checkbox"]:checked`)).map(function(el) {
+        return Array.from(document.querySelectorAll('.' + BANNER_CLASSNAME + ' input[type="checkbox"]:checked')).map(function(el) {
             return el.value;
         })
     }
@@ -58,7 +58,7 @@
      * @return {string[]}
      */
     function getAllCookies() {
-        return Array.from(document.querySelectorAll(`.${ BANNER_CLASSNAME } input[type="checkbox"]`)).map(function(el) {
+        return Array.from(document.querySelectorAll('.' + BANNER_CLASSNAME + ' input[type="checkbox"]')).map(function(el) {
             return el.value;
         })
     }
@@ -71,7 +71,10 @@
     function createCookie(identifier, values) {
         var date = new Date((new Date).getTime() + (COOKIE_AGE * 1000));
         var cookieVal = (Array.isArray(values) ? values : true);
-        document.cookie = `${ identifier }=${ cookieVal }; expires=${ date.toUTCString() }; path=/`;
+        var cookieValue = identifier + '=' + cookieVal;
+        cookieValue += '; expires=' + date.toUTCString();
+        cookieValue += '; path=/;';
+        document.cookie = cookieValue;
     }
 
     /**
@@ -90,11 +93,11 @@
         });
     }
 
-    document.querySelectorAll(`[${ BANNER_BTN_DATA_ATTR }]`).forEach(function(element) {
+    document.querySelectorAll('[' + BANNER_BTN_DATA_ATTR + ']').forEach(function(element) {
         element.addEventListener('click', function() {
             /** @var {HTMLElement} */
             var elm = this;
-            const val = elm.getAttribute(BANNER_BTN_DATA_ATTR);
+            var val = elm.getAttribute(BANNER_BTN_DATA_ATTR);
 
             if (val === 'all') {
                 acceptAllCookies();
@@ -106,7 +109,7 @@
     });
 
     if (!hasAcceptedCookies()) {
-        activateBanner(`.${ BANNER_CLASSNAME }`, true);
+        activateBanner('.' + BANNER_CLASSNAME, true);
     }
 })();
 
