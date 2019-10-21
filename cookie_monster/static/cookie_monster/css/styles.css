@@ -24,11 +24,11 @@
     font-size: 16px;
 }
 
-.cookie-monster-banner .cookie-monster-banner--content button {
+.cookie-monster-banner .cookie-monster-banner--content a {
     text-decoration: underline;
 }
 
-.cookie-monster-banner .cookie-monster-banner--btn-wrapper button {
+.cookie-monster-banner .cookie-monster-banner--btn-wrapper .cookie-monster-banner--btn {
     display: inline-block;
     color: #ffffff;
     font-size: 16px;
