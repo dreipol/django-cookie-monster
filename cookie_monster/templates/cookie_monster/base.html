@@ -1,12 +1,10 @@
 {% load cookie_monster static %}
 
 {% block banner %}
-    <div class="cookieMakerContainer" id="cookieMakerContainer">
-        <div class="cookieMakerContainerTitle">
-            <h3>{{ COOKIE_BASE.banner_title }}</h3>
-        </div>
+    <div class="cookie-monster-banner" id="cookieMakerContainer">
+        <h3 class="cookie-monster-banner--title">{{ COOKIE_BASE.banner_title }}</h3>
 
-        <div class="cookieMakerContainerContent">
+        <div class="cookie-monster-banner--content">
             <p>{{ COOKIE_BASE.banner_text }}
                 {% if COOKIE_BASE.cookie_policy.href %}
                     {{ COOKIE_BASE.cookie_policy.help_text }}
@@ -16,8 +14,8 @@
         </div>
 
         {% block cookie_group %}
-            <div class="cookieMakerContainerBaseButton">
-                <a onClick="setCookieBase();">{{ COOKIE_BASE.button_labels.cookie_base_button_label }}</a>
+            <div class="cookie-monster-banner--btn-wrapper">
+                <button class="cookie-monster-banner--btn" data-cookiemonster-accept="all">{{ COOKIE_BASE.button_labels.cookie_base_button_label }}</button>
             </div>
         {% endblock %}
     </div>
@@ -25,12 +23,17 @@
 
 <script>
     window.__js_base_cookie_bridge = {
+        // cookie name
         cookie_identifier: "{{ COOKIE_BASE.cookie_identifier }}",
+        //Title for banner
         cookie_title: "{{ COOKIE_BASE.cookie_title }}",
+        //age in MS
         cookie_age: "{{ COOKIE_BASE.cookie_age }}",
     }
 </script>
 
+{% if not COOKIE_CUSTOM_THEME %}
 <link rel="stylesheet" type="text/css" href="{% static "cookie_monster/css/styles.css" %}" async/>
+{% endif %}
 <script src="{% static "cookie_monster/js/base.js" %}" async></script>
 

@@ -27,7 +27,7 @@ def get_settings_variable(nested_keys, default, obj=COOKIE_MONSTER):
 
 COOKIE_MONSTER_BASE_CONFIG = {
     'cookie_identifier': get_settings_variable(['cookie', 'identifier'], _('cookie_consent')),
-    'cookie_age': get_settings_variable(['cookie', 'age'], 1),
+    'cookie_age': get_settings_variable(['cookie', 'age'], 604800),
     'banner_title': get_settings_variable(['banner', 'title'], _('Cookie Banner')),
     'banner_text': get_settings_variable(['banner', 'text'],
                                          _('This website uses cookies to provide you with an optimal user experience.')),
@@ -45,5 +45,6 @@ COOKIE_MONSTER_BASE_CONFIG = {
     },
 }
 
+COOKIE_MONSTER_CUSTOM_THEME = get_settings_variable(['banner', 'custom_theme'], True)
 COOKIE_MONSTER_GROUP_CONFIG = get_settings_variable(['cookie_group'], [])
 
