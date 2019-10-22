@@ -1,8 +1,7 @@
 (function() {
     var BANNER_CLASSNAME = 'cookie-monster-banner';
     var COOKIE_IDENTIFIER = window.__js_base_cookie_bridge.cookie_identifier;
-    // var COOKIE_AGE = window.__js_base_cookie_bridge.cookie_age;
-    var COOKIE_AGE = 604800;
+    var COOKIE_AGE = window.__js_base_cookie_bridge.cookie_age;
     var BANNER_BTN_DATA_ATTR = 'data-cookiemonster-accept';
 
     /**
@@ -12,6 +11,15 @@
      */
     function createFacet(name) {
         return BANNER_CLASSNAME + '__' + name;
+    }
+
+    /**
+     * Get array of elements
+     * @param {string} selector
+     * @return {HTMLElement[]}
+     */
+    function selectAll(selector) {
+        return Array.prototype.slice.call(document.querySelectorAll(selector));
     }
 
     /**
@@ -48,7 +56,7 @@
      * @return {string[]}
      */
     function getCheckedCookies() {
-        return Array.from(document.querySelectorAll('.' + BANNER_CLASSNAME + ' input[type="checkbox"]:checked')).map(function(el) {
+        return selectAll('.' + BANNER_CLASSNAME + ' input[type="checkbox"]:checked').map(function(el) {
             return el.value;
         })
     }
@@ -58,7 +66,7 @@
      * @return {string[]}
      */
     function getAllCookies() {
-        return Array.from(document.querySelectorAll('.' + BANNER_CLASSNAME + ' input[type="checkbox"]')).map(function(el) {
+        return selectAll('.' + BANNER_CLASSNAME + ' input[type="checkbox"]').map(function(el) {
             return el.value;
         })
     }
@@ -66,7 +74,7 @@
     /**
      * Create cookie with selected values
      * @param {string} identifier
-     * @paramn {string[]|null} values
+     * @param {string[]|null} values
      */
     function createCookie(identifier, values) {
         var date = new Date((new Date).getTime() + (COOKIE_AGE * 1000));
@@ -83,8 +91,7 @@
      * @param {boolean} show
      */
     function activateBanner(elem, show) {
-        var el = document.querySelectorAll(elem);
-        el.forEach(function(element) {
+        selectAll(elem).forEach(function(element) {
             if (show) {
                 element.classList.add(createFacet('active'));
             } else {
@@ -93,18 +100,13 @@
         });
     }
 
-    document.querySelectorAll('[' + BANNER_BTN_DATA_ATTR + ']').forEach(function(element) {
+    selectAll('[' + BANNER_BTN_DATA_ATTR + ']').forEach(function(element) {
         element.addEventListener('click', function() {
-            /** @var {HTMLElement} */
-            var elm = this;
-            var val = elm.getAttribute(BANNER_BTN_DATA_ATTR);
-
-            if (val === 'all') {
+            if (element.getAttribute(BANNER_BTN_DATA_ATTR) === 'all') {
                 acceptAllCookies();
             } else {
                 acceptSelectedCookies();
             }
-
         });
     });
 

@@ -45,6 +45,6 @@ COOKIE_MONSTER_BASE_CONFIG = {
     },
 }
 
-COOKIE_MONSTER_CUSTOM_THEME = get_settings_variable(['banner', 'custom_theme'], True)
+COOKIE_MONSTER_CUSTOM_THEME = get_settings_variable(['banner', 'custom_theme'], False)
 COOKIE_MONSTER_GROUP_CONFIG = get_settings_variable(['cookie_group'], [])
 

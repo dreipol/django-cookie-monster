@@ -4,14 +4,13 @@
     <div class="cookie-monster-banner" id="cookieMakerContainer">
         <h3 class="cookie-monster-banner--title">{{ COOKIE_BASE.banner_title }}</h3>
 
-        <div class="cookie-monster-banner--content">
-            <p>{{ COOKIE_BASE.banner_text }}
-                {% if COOKIE_BASE.cookie_policy.href %}
-                    {{ COOKIE_BASE.cookie_policy.help_text }}
-                    <a href="{{ COOKIE_BASE.cookie_policy.href }}">{{ COOKIE_BASE.cookie_policy.label }}</a>
-                {% endif %}
-            </p>
-        </div>
+        <p class="cookie-monster-banner--content">
+            {{ COOKIE_BASE.banner_text }}
+            {% if COOKIE_BASE.cookie_policy.href %}
+                {{ COOKIE_BASE.cookie_policy.help_text }}
+                <a href="{{ COOKIE_BASE.cookie_policy.href }}">{{ COOKIE_BASE.cookie_policy.label }}</a>
+            {% endif %}
+        </p>
 
         {% block cookie_group %}
             <div class="cookie-monster-banner--btn-wrapper">
