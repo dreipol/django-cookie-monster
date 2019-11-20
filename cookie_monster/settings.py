@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
+
 COOKIE_MONSTER = getattr(settings, 'COOKIE_MONSTER')
 COOKIE_GROUP_WARNING = _('Please set the cookie_group configuration in your settings.py')
 
@@ -33,7 +34,8 @@ COOKIE_MONSTER_BASE_CONFIG = {
                                          _('This website uses cookies to provide you with an optimal user experience.')),
     'cookie_policy': {
         'help_text': get_settings_variable(['banner', 'cookie_policy', 'text'], _('For more information read our')),
-        'href': get_settings_variable(['banner', 'cookie_policy', 'href'], _('')),
+        'href_callable': get_settings_variable(['banner', 'cookie_policy', 'href_callable'], _('')),
+        'page_id': get_settings_variable(['banner', 'cookie_policy', 'page_id'], _('')),
         'label': get_settings_variable(['banner', 'cookie_policy', 'label'], _('Cookie Police')),
     },
     'button_labels': {
@@ -47,4 +49,3 @@ COOKIE_MONSTER_BASE_CONFIG = {
 
 COOKIE_MONSTER_CUSTOM_THEME = get_settings_variable(['banner', 'custom_theme'], False)
 COOKIE_MONSTER_GROUP_CONFIG = get_settings_variable(['cookie_group'], [])
-

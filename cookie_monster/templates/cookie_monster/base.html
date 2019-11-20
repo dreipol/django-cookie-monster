@@ -6,9 +6,9 @@
 
         <p class="cookie-monster-banner--content">
             {{ COOKIE_BASE.banner_text }}
-            {% if COOKIE_BASE.cookie_policy.href %}
+            {% if COOKIE_BASE.cookie_policy.href_callable %}
                 {{ COOKIE_BASE.cookie_policy.help_text }}
-                <a href="{{ COOKIE_BASE.cookie_policy.href }}">{{ COOKIE_BASE.cookie_policy.label }}</a>
+                <a href="{% get_cookie_policy_url %}">{{ COOKIE_BASE.cookie_policy.label }}</a>
             {% endif %}
         </p>
 
