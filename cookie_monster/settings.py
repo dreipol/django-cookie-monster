@@ -35,7 +35,6 @@ COOKIE_MONSTER_BASE_CONFIG = {
     'cookie_policy': {
         'help_text': get_settings_variable(['banner', 'cookie_policy', 'text'], _('For more information read our')),
         'href_callable': get_settings_variable(['banner', 'cookie_policy', 'href_callable'], _('')),
-        'page_id': get_settings_variable(['banner', 'cookie_policy', 'page_id'], _('')),
         'label': get_settings_variable(['banner', 'cookie_policy', 'label'], _('Cookie Police')),
     },
     'button_labels': {
