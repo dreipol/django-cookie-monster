@@ -45,3 +45,9 @@ output/*/index.html
 
 # Sphinx
 docs/_build
+
+# Node dependencies
+node_modules
+
+# generated files
+cookie_monster/static/cookie_monster/

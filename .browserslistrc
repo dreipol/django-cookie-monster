@@ -1,0 +1,18 @@
+# Spreadsheet: https://docs.google.com/spreadsheets/d/1pFXTwYD_P9xAywmKQpLrGBhBH4DiM_14B7YjNL6Hms0
+
+Explorer >= 11 # Released: 17.10.2013
+ExplorerMobile >= 11 # Released: 17.10.2013
+
+Safari >= 11 # Released: 19.09.2017
+iOS >= 11 # Released: 19.09.2017
+
+Firefox >= 60 # (ESR) Released: 09.05.2018
+FirefoxAndroid >= 60 # (ESR) Released: 09.05.2018
+
+Chrome >= 66 # Released: 17.04.2018
+ChromeAndroid >= 66 # Released: 17.04.2018
+
+Opera >= 52 # Released: 22.03.2018
+OperaMobile >= 52 # Released: 22.03.2018
+
+Android >= 4

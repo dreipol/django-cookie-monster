@@ -1,0 +1,37 @@
+{
+  "rows": [
+    "Name",
+    "Provider",
+    "Purpose"
+  ],
+  "groups": [
+    {
+      "title": "Necessary",
+      "required": true,
+      "cookies": [
+        {
+          "id": "application",
+          "rows": [
+            "language",
+            "onlinedoctor.de",
+            "site language"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Marketing",
+      "required": false,
+      "cookies": [
+        {
+          "id": "GTM",
+          "rows": [
+            "Google Tag Manager",
+            "Google.com",
+            "tracking cookie"
+          ]
+        }
+      ]
+    }
+  ]
+}
