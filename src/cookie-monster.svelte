@@ -8,7 +8,10 @@
             </p>
 
             {#if groupsSettings}
-                <CookieGroups groups={groupsSettings.groups} rows={groupsSettings.rows}/>
+                <CookieGroups
+                        groups={groupsSettings.groups}
+                        rows={groupsSettings.rows}
+                        bind:selectedCheckboxes={selectedCookies}/>
             {/if}
 
             <div class="cookie-monster--btn-wrapper">

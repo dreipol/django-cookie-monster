@@ -25,3 +25,10 @@ export function hasAcceptedCookies(cookieId) {
     const cookies = document.cookie.split(/[;\s=]+/);
     return cookies.indexOf(cookieId) !== -1;
 }
+
+/**
+ * Remove duplicate items from an array
+ * @param {Array} arr - target array
+ * @returns {Array} cleaned up array
+ */
+export const arrayUniq = arr => Array.from(new Set(arr));
