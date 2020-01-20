@@ -9,8 +9,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c",
-    "watch": "rollup -c -w"
+    "build": "npm run build-js && mpm run build-css",
+    "build-js": "rollup -c",
+    "watch-js": "npm run build-js -- -w",
+    "lint-js": "eslint src --ext js --ext svelte",
+    "build-css": "postcss src/themes --ext css --dir cookie_monster/static",
+    "watch-css": "npm run build-css -- -w",
+    "lint-css": "stylelint src/themes",
+    "lint": "npm run lint-js && npm run lint-css"
   },
   "repository": {
     "type": "git",
@@ -26,15 +32,25 @@
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
+    "@dreipol/eslint-config": "^6.0.4",
+    "@dreipol/stylelint-config": "^5.0.0",
+    "@dreipol/stylelint-config-order": "^3.0.0",
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "autoprefixer": "^9.7.4",
     "cssnano": "^4.1.10",
+    "eslint": "^6.8.0",
+    "eslint-plugin-svelte3": "^2.7.3",
     "postcss": "^7.0.26",
+    "postcss-cli": "^7.1.0",
+    "postcss-css-variables": "^0.14.0",
+    "postcss-nested": "^4.2.1",
     "rollup": "^1.29.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-svelte": "^5.1.1",
     "rollup-plugin-terser": "^5.2.0",
+    "stylelint": "^13.0.0",
+    "stylelint-order": "^4.0.0",
     "svelte": "^3.17.1"
   },
   "dependencies": {

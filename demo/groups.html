@@ -6,21 +6,28 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Simple Demo</title>
+    <style>
+        * { box-sizing:  border-box }
+    </style>
 </head>
 <body>
-  <div class="cookie-monster"></div>
+  <div id="app"></div>
+  <link rel="stylesheet" href="/cookie_monster/static/minimal.css"/>
   <script src="/cookie_monster/static/cookie-monster.js"></script>
 
   <script>
-    var cm = cookieMonster(document.querySelector('.cookie-monster'), {
+    var cm = cookieMonster(document.querySelector('#app'), {
       languages: {
         en: {
           title: 'Hello there please accept our cookies',
-          text: 'This is a cookie text and it could be also plain <a href="https://google.com">html</a>',
+          text: 'We use cookies to personalise content and ads, to provide social media features and to analyse our traffic only with your explicit consent. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services. We do not set any non-technical cookies until you have given your explicit consent (<a href="https://www.datatrans.ch/en/privacy-policy/">Privacy Policy</a>).&nbsp;',
           buttons: {
             accept: {
               label: 'Please accept this cookie'
-            }
+            },
+              table_toggle: {
+                  label: "Toggle the advanced cookie settings"
+              }
           }
         }
       },
@@ -40,7 +47,7 @@
               {
                 "id": "application",
                 "rows": [
-                  "language",
+                  "Language",
                   "onlinedoctor.de",
                   "site language"
                 ]
@@ -58,9 +65,39 @@
                   "Google.com",
                   "tracking cookie"
                 ]
-              }
+              },
+                {
+                    "id": "GTM2",
+                    "rows": [
+                        "Google Analytics",
+                        "Google.com",
+                        "tracking cookie"
+                    ]
+                }
             ]
-          }
+          },
+            {
+                "title": "Marketing 2",
+                "required": false,
+                "cookies": [
+                    {
+                        "id": "GTM3",
+                        "rows": [
+                            "Google Tag Manager",
+                            "Google.com",
+                            "tracking cookie"
+                        ]
+                    },
+                    {
+                        "id": "GTM4",
+                        "rows": [
+                            "Google Analytics",
+                            "Google.com",
+                            "tracking cookie"
+                        ]
+                    }
+                ]
+            }
         ]
       }
     });

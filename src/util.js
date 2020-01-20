@@ -2,11 +2,11 @@
  * Create cookie with selected values
  * @param {string} identifier
  * @param {string[]|null} values
- * @param {Object} options
- * @param {Number} options.age - how long the cookie should be stored
+ * @param {object} options
+ * @param {number} options.age - how long the cookie should be stored
  */
 export function createCookie(identifier, values, { age }) {
-    const date = new Date((new Date).getTime() + (age * 1000));
+    const date = new Date((new Date()).getTime() + (age * 1000));
     const cookieVal = (Array.isArray(values) ? values.join(',') : true);
 
     document.cookie = `${ identifier }=${ cookieVal }; expires=${ date.toUTCString() }; path=/;`;
@@ -29,6 +29,6 @@ export function hasAcceptedCookies(cookieId) {
 /**
  * Remove duplicate items from an array
  * @param {Array} arr - target array
- * @returns {Array} cleaned up array
+ * @return {Array} cleaned up array
  */
 export const arrayUniq = arr => Array.from(new Set(arr));

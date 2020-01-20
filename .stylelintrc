@@ -1,0 +1,6 @@
+{
+    "extends": [
+        "@dreipol/stylelint-config",
+        "@dreipol/stylelint-config-order"
+    ]
+}

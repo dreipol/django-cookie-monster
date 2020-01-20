@@ -5,13 +5,10 @@ import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import babel from 'rollup-plugin-babel';
 import postcss from 'postcss';
-import cssnano from 'cssnano';
-import autoprefixer from 'autoprefixer';
 
+const postcssConfig = require('./postcss.config');
 const outputRoot = join('cookie_monster', 'static');
-const cssCompiler = postcss([cssnano(), autoprefixer({
-    cascade: true,
-})]);
+const cssCompiler = postcss(postcssConfig.plugins);
 
 export default {
     input: 'src/index.js',
@@ -52,5 +49,5 @@ export default {
             return;
         }
         warn(warning); // this requires Rollup 0.46
-    }
+    },
 };
