@@ -6,14 +6,11 @@
  * @param {Number} options.age - how long the cookie should be stored
  */
 export function createCookie(identifier, values, { age }) {
-    var date = new Date((new Date).getTime() + (age * 1000));
-    var cookieVal = (Array.isArray(values) ? values : true);
-    var cookieValue = identifier + '=' + cookieVal;
-    cookieValue += '; expires=' + date.toUTCString();
-    cookieValue += '; path=/;';
-    document.cookie = cookieValue;
-}
+    const date = new Date((new Date).getTime() + (age * 1000));
+    const cookieVal = (Array.isArray(values) ? values.join(',') : true);
 
+    document.cookie = `${ identifier }=${ cookieVal }; expires=${ date.toUTCString() }; path=/;`;
+}
 
 /**
  * Read cookies in the browser
@@ -25,6 +22,6 @@ export function hasAcceptedCookies(cookieId) {
         return false;
     }
 
-    var cookies = document.cookie.split(/[;\s=]+/);
+    const cookies = document.cookie.split(/[;\s=]+/);
     return cookies.indexOf(cookieId) !== -1;
 }

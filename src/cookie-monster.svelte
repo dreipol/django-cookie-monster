@@ -5,6 +5,8 @@
         {@html $_('text', { default: 'Cookie Text' })}
     </p>
 
+    <CookieGroups></CookieGroups>
+
     <div class="cookie-monster-banner--content">
         <div class="cookie-monster-banner--btn-wrapper">
             <button on:click={acceptCookies} class="cookie-monster-banner--btn">
@@ -31,6 +33,7 @@
 
 <script>
     import { _ } from 'svelte-i18n';
+    import CookieGroups from './cookie-groups.svelte';
     import { hasAcceptedCookies, createCookie } from './util';
 
     // Props
