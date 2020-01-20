@@ -3,6 +3,7 @@ import { init, addMessages } from 'svelte-i18n';
 
 export default function cookieMonsterFactory(el, props = {}) {
     const { languages } = props;
+
     // add locales
     if (languages) {
         Object.keys(languages).forEach(lang => addMessages(lang, languages[lang]));

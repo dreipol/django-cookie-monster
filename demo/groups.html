@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple Demo</title>
+</head>
+<body>
+  <div class="cookie-monster"></div>
+  <script src="/cookie_monster/static/cookie-monster.js"></script>
+
+  <script>
+    var cm = cookieMonster(document.querySelector('.cookie-monster'), {
+      languages: {
+        en: {
+          title: 'Hello there please accept our cookies',
+          text: 'This is a cookie text and it could be also plain <a href="https://google.com">html</a>',
+          buttons: {
+            accept: {
+              label: 'Please accept this cookie'
+            }
+          }
+        }
+      },
+      cookieId: 'cookie-monster',
+      cookieAge: 1000,
+      groupsSettings: {
+        "rows": [
+          "Name",
+          "Provider",
+          "Purpose"
+        ],
+        "groups": [
+          {
+            "title": "Necessary",
+            "required": true,
+            "cookies": [
+              {
+                "id": "application",
+                "rows": [
+                  "language",
+                  "onlinedoctor.de",
+                  "site language"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Marketing",
+            "required": false,
+            "cookies": [
+              {
+                "id": "GTM",
+                "rows": [
+                  "Google Tag Manager",
+                  "Google.com",
+                  "tracking cookie"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
