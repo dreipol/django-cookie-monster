@@ -50,4 +50,4 @@ docs/_build
 node_modules
 
 # generated files
-cookie_monster/static/cookie_monster/
+cookie_monster/static/

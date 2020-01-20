@@ -1,39 +1,44 @@
 import { join } from 'path';
 import svelte from 'rollup-plugin-svelte';
+import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import { terser } from "rollup-plugin-terser";
+import { terser } from 'rollup-plugin-terser';
 import babel from 'rollup-plugin-babel';
+import postcss from 'postcss';
+import cssnano from 'cssnano';
+import autoprefixer from 'autoprefixer';
 
-const outputRoot = join('cookie_monster', 'static', 'cookie_monster');
+const outputRoot = join('cookie_monster', 'static');
+const cssCompiler = postcss([cssnano(), autoprefixer({
+    cascade: true,
+})]);
 
 export default {
     input: 'src/index.js',
     output: {
-        file: join(outputRoot, 'js', 'cookie-monster.js'),
-        name: 'CookieMonster',
+        file: join(outputRoot, 'cookie-monster.js'),
+        name: 'cookieMonster',
         sourcemap: true,
         format: 'umd',
     },
     plugins: [
         resolve(),
+        commonjs(),
         svelte({
             // Optionally, preprocess components with svelte.preprocess:
             // https://svelte.dev/docs#svelte_preprocess
             preprocess: {
-                style: ({ content }) => {
-                    return transformStyles(content);
+                style: async ({ content, filename }) => {
+                    const { css, map } = await cssCompiler
+                        .process(content, {
+                            from: filename,
+                            map: {
+                                inline: false,
+                            },
+                        });
+
+                    return { code: css, map: map.toJSON() };
                 },
-            },
-
-            // Emit CSS as "files" for other plugins to process
-            emitCss: true,
-
-            // Extract CSS into a separate file (recommended).
-            // See note below
-            css: function(css) {
-                // creates `main.css` and `main.css.map` — pass `false`
-                // as the second argument if you don't want the sourcemap
-                css.write(join(outputRoot, 'css/cookie-monster.css'));
             },
         }),
         babel({
@@ -42,4 +47,10 @@ export default {
         }),
         terser(),
     ],
+    onwarn(warning, warn) {
+        if (warning.code === 'THIS_IS_UNDEFINED') {
+            return;
+        }
+        warn(warning); // this requires Rollup 0.46
+    }
 };
