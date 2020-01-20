@@ -8,7 +8,6 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build-js && mpm run build-css",
     "build-js": "rollup -c",
     "watch-js": "npm run build-js -- -w",
@@ -16,7 +15,8 @@
     "build-css": "postcss src/themes --ext css --dir cookie_monster/static",
     "watch-css": "npm run build-css -- -w",
     "lint-css": "stylelint src/themes",
-    "lint": "npm run lint-js && npm run lint-css"
+    "lint": "npm run lint-js && npm run lint-css",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",

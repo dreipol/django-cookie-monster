@@ -57,7 +57,6 @@
 </style>
 
 <script>
-    import { _ } from 'svelte-i18n';
     import { onMount } from 'svelte';
     import { arrayUniq } from './util';
 
@@ -84,10 +83,6 @@
         } else {
             selectedCheckboxes = [...selectedCheckboxes, cookieId];
         }
-    }
-
-    function acceptAllCookiesGroup(group) {
-        selectedCheckboxes = arrayUniq([...selectedCheckboxes, ...getGroupCookiesIds(group)]);
     }
 
     function toggleGroup(group) {
