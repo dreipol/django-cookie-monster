@@ -13,11 +13,17 @@
 
   <script>
     var cm = cookieMonster(document.querySelector('.cookie-monster'), {
-        languages: {
-          en: {
-            title: 'Hello there please accept our cookies',
+      languages: {
+        en: {
+          title: 'Hello there please accept our cookies',
+          text: 'This is a cookie text and it could be also plain <a href="https://google.com">html</a>',
+          buttons: {
+            accept: {
+              label: 'Please accept this cookie'
+            }
           }
-        },
+        }
+      },
       cookieId: 'cookie-monster',
       cookieAge: 1000,
     });
