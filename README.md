@@ -2,6 +2,7 @@
 django-cookie-monster
 =============================
 
+[![CircleCI](https://circleci.com/gh/dreipol/django-cookie-monster.svg?style=svg)](https://circleci.com/gh/dreipol/django-cookie-monster)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3032662f751343e49710/maintainability)](https://codeclimate.com/github/dreipol/django-cookie-monster/maintainability)
 
 Your project description goes here
