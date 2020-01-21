@@ -1,8 +1,14 @@
 import { expect } from 'chai';
 import createCookieMonster from '../';
+import { hasAcceptedCookies } from '../src/util';
 import { tick } from 'svelte';
 
 describe('Cookie Banner Components', () => {
+    before(() => {
+        // patch the requestAnimationFrame method
+        window.requestAnimationFrame = global.requestAnimationFrame = setImmediate;
+    });
+
     it('The Factory returns a svelte component instance', () => {
         const div = document.createElement('div');
         const component = createCookieMonster(div);
@@ -93,6 +99,18 @@ describe('Cookie Banner Components', () => {
         const tableAfter = div.querySelector('.cookie-monster--groups');
         expect(tableAfter).to.be.ok;
 
+        component.$destroy();
+    });
+
+    it('Accepting cookies should set the custom cookie id', () => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div, {
+            cookieAge: 1000,
+            cookieId: 'hello',
+        });
+
+        component.acceptCookies();
+        expect(hasAcceptedCookies('hello')).to.be.ok;
         component.$destroy();
     });
 });
