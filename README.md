@@ -44,3 +44,29 @@ Does the code actually work?
 
 ::
 
+# Contribute
+
+## Installation
+
+To install the frontend you will need to run:
+
+```sh
+npm i
+```
+
+## Building frontend
+
+The frontend can be built via:
+
+```sh
+npm run build
+```
+
+## Unit test
+
+You can unit test the frontend code with:
+
+```sh
+npm test
+```
+
