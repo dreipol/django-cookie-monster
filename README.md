@@ -1,9 +1,8 @@
-=============================
 django-cookie-monster
-=============================
 
 [![CircleCI](https://circleci.com/gh/dreipol/django-cookie-monster.svg?style=svg)](https://circleci.com/gh/dreipol/django-cookie-monster)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3032662f751343e49710/maintainability)](https://codeclimate.com/github/dreipol/django-cookie-monster/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/dreipol/django-cookie-monster/badge.svg)](https://coveralls.io/github/dreipol/django-cookie-monster)
 
 Your project description goes here
 
