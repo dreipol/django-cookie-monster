@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import createCookieMonster from '../';
-import { hasAcceptedCookies } from '../src/util';
+import createCookieMonster, { __ } from '../';
 import { tick } from 'svelte';
 
 describe('Cookie Banner Components', () => {
@@ -110,7 +109,8 @@ describe('Cookie Banner Components', () => {
         });
 
         component.acceptCookies();
-        expect(hasAcceptedCookies('hello')).to.be.ok;
+
+        expect(__.hasAcceptedCookies('hello')).to.be.ok;
         component.$destroy();
     });
 });

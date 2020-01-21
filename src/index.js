@@ -1,8 +1,10 @@
 import CookieMonsterComponent from './cookie-monster.svelte';
 import { init, addMessages } from 'svelte-i18n';
+import * as util from './util';
 
 const isDevelopment = typeof process !== 'undefined' && process.env.NODE_ENV === 'development'; // eslint-disable-line
 
+export const __ = util;
 export default function cookieMonsterFactory(el, props = {}) {
     const { languages } = props;
 
