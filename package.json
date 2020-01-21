@@ -2,7 +2,7 @@
   "name": "django-cookie-monster",
   "version": "1.0.0",
   "description": "============================= django-cookie-monster =============================",
-  "main": "index.js",
+  "main": "./cookie_monster/static/cookie-monster.umd.js",
   "directories": {
     "doc": "docs",
     "test": "tests"
@@ -10,14 +10,17 @@
   "scripts": {
     "build": "npm run build-js && npm run build-css",
     "build-js": "rollup -c",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "cov-html": "nyc report --reporter=html",
     "watch-js": "npm run build-js -- -w",
     "lint-js": "eslint src --ext js --ext svelte",
     "build-css": "postcss src/themes --ext css --dir cookie_monster/static",
     "watch-css": "npm run build-css -- -w",
     "lint-css": "stylelint src/themes",
     "lint": "npm run lint-js && npm run lint-css",
-    "test": "mocha -r tests/register-svelte.js -r esm -r jsdom-global/register tests/*.spec.js",
-    "test-with-cov": "nyc npm test"
+    "pretest": "npm run build",
+    "test": "mocha -r esm -r jsdom-global/register tests/*.spec.js",
+    "test-with-cov": "nyc --extension .svelte npm run test"
   },
   "repository": {
     "type": "git",
@@ -40,6 +43,7 @@
     "@rollup/plugin-node-resolve": "^7.0.0",
     "autoprefixer": "^9.7.4",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.9",
     "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
     "eslint-plugin-svelte3": "^2.7.3",

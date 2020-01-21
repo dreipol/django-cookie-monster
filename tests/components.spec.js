@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import createCookieMonster from '../src';
+import createCookieMonster from '../';
+import { tick } from 'svelte';
 
 describe('Cookie Banner Components', () => {
     it('The Factory returns a svelte component instance', () => {
@@ -49,6 +50,29 @@ describe('Cookie Banner Components', () => {
         const buttons = div.querySelectorAll('button');
 
         expect(buttons).to.have.length(2);
+
+        component.$destroy();
+    });
+
+    it('Toggle the groups table', async () => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div, {
+            cookieAge: 1000,
+            cookieId: 'hello',
+            groupsSettings: {
+                rows: [],
+                groups: [],
+            },
+        });
+
+        const tableBefore = div.querySelector('.cookie-monster--groups');
+        expect(tableBefore).to.be.not.ok;
+
+        component.toggleTable();
+        await tick();
+
+        const tableAfter = div.querySelector('.cookie-monster--groups');
+        expect(tableAfter).to.be.ok;
 
         component.$destroy();
     });

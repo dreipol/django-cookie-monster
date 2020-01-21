@@ -50,11 +50,12 @@
     let selectedCookies = [];
     let isTableVisible = false;
 
-    function toggleTable() {
+    // public methods
+    export function toggleTable() {
         isTableVisible = !isTableVisible;
     }
 
-    function acceptCookies() {
+    export function acceptCookies() {
         createCookie(cookieId, selectedCookies, { age: cookieAge });
         isActive = !hasAcceptedCookies(cookieId);
     }

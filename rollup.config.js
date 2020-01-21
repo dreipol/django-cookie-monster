@@ -12,16 +12,22 @@ const cssCompiler = postcss(postcssConfig.plugins);
 
 export default {
     input: 'src/index.js',
-    output: {
-        file: join(outputRoot, 'cookie-monster.js'),
+    output: [{
+        file: join(outputRoot, 'cookie-monster.umd.js'),
         name: 'cookieMonster',
         sourcemap: true,
         format: 'umd',
-    },
+    }, {
+        file: join(outputRoot, 'cookie-monster.esm.js'),
+        name: 'cookieMonster',
+        sourcemap: true,
+        format: 'esm',
+    }],
     plugins: [
         resolve(),
         commonjs(),
         svelte({
+            accessors: true,
             // Optionally, preprocess components with svelte.preprocess:
             // https://svelte.dev/docs#svelte_preprocess
             preprocess: {
