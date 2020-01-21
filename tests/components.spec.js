@@ -54,6 +54,25 @@ describe('Cookie Banner Components', () => {
         component.$destroy();
     });
 
+    it('Load properly the vocabulary keys', () => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div, {
+            cookieAge: 1000,
+            cookieId: 'hello',
+            languages: {
+                en: {
+                    title: 'halli hallo',
+                },
+            },
+        });
+
+        const title = div.querySelector('.cookie-monster--title');
+
+        expect(title.innerHTML).to.be.equal('halli hallo');
+
+        component.$destroy();
+    });
+
     it('Toggle the groups table', async () => {
         const div = document.createElement('div');
         const component = createCookieMonster(div, {
