@@ -32,7 +32,7 @@ jobs:
       - run:
           name: test
           command: |
-            npm test-with-cov
+            npm run test-with-cov
 
       - run:
           name: coverage
