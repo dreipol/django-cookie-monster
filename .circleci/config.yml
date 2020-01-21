@@ -38,10 +38,3 @@ jobs:
           name: coverage
           command: |
             npm run coveralls
-            mkdir -p reports/coverage
-            mv coverage/* reports/coverage
-
-      - store_test_results:
-          path: reports
-      - store_artifacts:
-          path: reports
