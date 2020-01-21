@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12.11.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - node-deps-{{ checksum "package-lock.json" }}
+
+      - run:
+          name: install frontend packages
+          command: |
+            npm ci
+
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: node-deps-{{ checksum "package-lock.json" }}
+
+      - run:
+          name: lint
+          command: |
+            mkdir -p reports
+            npm run lint
+
+      - run:
+          name: test
+          command: |
+            npm test

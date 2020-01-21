@@ -1,0 +1,55 @@
+import { expect } from 'chai';
+import createCookieMonster from '../src';
+
+describe('Cookie Banner Components', () => {
+    it('The Factory returns a svelte component instance', () => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div);
+
+        expect(component).to.be.ok;
+
+        component.$destroy();
+    });
+
+    it('Properties will be properly handled', () => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div, {
+            cookieAge: 1000,
+            cookieId: 'hello',
+        });
+
+        expect(component.cookieAge).to.be.equal(1000);
+        expect(component.cookieId).to.be.equal('hello');
+
+        component.$destroy();
+    });
+
+    it('Buttons will be properly rendered (simple)', () => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div, {
+            cookieAge: 1000,
+            cookieId: 'hello',
+        });
+
+        const buttons = div.querySelectorAll('button');
+
+        expect(buttons).to.have.length(1);
+
+        component.$destroy();
+    });
+
+    it('Buttons will be properly rendered (groups)', () => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div, {
+            cookieAge: 1000,
+            cookieId: 'hello',
+            groupsSettings: {},
+        });
+
+        const buttons = div.querySelectorAll('button');
+
+        expect(buttons).to.have.length(2);
+
+        component.$destroy();
+    });
+});

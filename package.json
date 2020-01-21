@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "npm run build-js && mpm run build-css",
+    "build": "npm run build-js && npm run build-css",
     "build-js": "rollup -c",
     "watch-js": "npm run build-js -- -w",
     "lint-js": "eslint src --ext js --ext svelte",
@@ -16,7 +16,8 @@
     "watch-css": "npm run build-css -- -w",
     "lint-css": "stylelint src/themes",
     "lint": "npm run lint-js && npm run lint-css",
-    "test": "npm run lint"
+    "test": "mocha -r tests/register-svelte.js -r esm -r jsdom-global/register tests/*.spec.js",
+    "test-with-cov": "nyc npm test"
   },
   "repository": {
     "type": "git",
@@ -38,9 +39,16 @@
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "autoprefixer": "^9.7.4",
+    "chai": "^4.2.0",
     "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
     "eslint-plugin-svelte3": "^2.7.3",
+    "esm": "^3.2.25",
+    "jsdom": "^16.0.1",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^7.0.0",
+    "nyc": "^15.0.0",
+    "pirates": "^4.0.1",
     "postcss": "^7.0.26",
     "postcss-cli": "^7.1.0",
     "postcss-css-variables": "^0.14.0",

@@ -51,5 +51,6 @@ node_modules
 
 # generated files
 cookie_monster/static/
+.nyc_output/
 
 .DS_Store

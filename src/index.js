@@ -1,8 +1,11 @@
 import CookieMonsterComponent from './cookie-monster.svelte';
 import { init, addMessages } from 'svelte-i18n';
 
+const isDevelopment = typeof process !== 'undefined' && process.env.NODE_ENV === 'development'; // eslint-disable-line
+
 export default function cookieMonsterFactory(el, props = {}) {
     const { languages } = props;
+
 
     // add locales
     if (languages) {
@@ -15,6 +18,7 @@ export default function cookieMonsterFactory(el, props = {}) {
         initialLocale: {
             navigator: true,
         },
+        warnOnMissingMessages: isDevelopment,
     });
 
     return new CookieMonsterComponent({
