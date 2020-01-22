@@ -5,25 +5,14 @@
                     tabindex="0"
                     aria-expanded={ openedGroups.includes(group) ? 'true' : 'false'}>
 
-                    <div class="cookie-monster--group-title-text">
-                        {$_('groups.title', {
-                        default: `${group.title} (${group.cookies.length})`,
-                            values: {
-                                groupTitle: group.title,
-                                amount: group.cookies.length
-                            }
-                        })}
-                    </div>
+                <div class="cookie-monster--group-title-text">
+                    {$_('groups.title', getDefaultTitleText(group))}
+                </div>
 
                 {#if !group.required}
                     <button class="cookie-monster--btn cookie-monster--btn__accept-all-group-cookies"
                             on:click|stopPropagation={() => acceptAllCookiesGroup(group)}>
-                        {$_('buttons.accept_all_cookies.label', {
-                            default: `Accept All ${group.title} Cookies`,
-                            values: {
-                                groupTitle: group.title
-                            }
-                        })}
+                        {$_('buttons.accept_all_cookies.label', getDefaultAcceptAllGroupCookiesTitle(group))}
                     </button>
                 {/if}
             </dt>
@@ -53,7 +42,7 @@
                                     <input class="cookie-monster--table-checkbox"
                                             type="checkbox"
                                             name={cookie.id}
-                                            checked={group.required ? true : selectedCheckboxes.includes(cookie.id)}
+                                            checked={selectedCheckboxes.includes(cookie.id)}
                                             disabled={group.required}
                                             on:change={ () => onCheckboxClicked(cookie.id) }
                                             id={cookie.id}
@@ -78,25 +67,37 @@
 
 <script>
     import { _ } from 'svelte-i18n';
-    import { onMount } from 'svelte';
     import { arrayUniq } from './util';
 
     // external properties
     export let rows;
     export let groups;
     // this property is bound to the outside component
-    export let selectedCheckboxes = [];
+    export let selectedCheckboxes;
 
     // internal state
     let openedGroups = [];
 
     const getGroupCookiesIds = group => group.cookies.map(({ id }) => id);
 
-    function getRequiredCookies() {
-        return groups.reduce((acc, group) => {
-            return [...acc, ...getGroupCookiesIds(group)];
-        }, []);
+    function getDefaultTitleText(group) {
+        return {
+            default: `${ group.title } (${ group.cookies.length })`,
+            values: {
+                groupTitle: group.title,
+                amount: group.cookies.length,
+            },
+        };
     }
+
+    function getDefaultAcceptAllGroupCookiesTitle(group) {
+        return {
+            default: `Accept All ${ group.title } Cookies`,
+            values: {
+                groupTitle: group.title,
+            },
+        };
+    };
 
     function onCheckboxClicked(cookieId) {
         if (selectedCheckboxes.includes(cookieId)) {
@@ -117,10 +118,4 @@
             openedGroups = [...openedGroups, group];
         }
     }
-
-    /*
-    onMount(() => {
-        selectedCheckboxes = arrayUniq([...selectedCheckboxes, ...getRequiredCookies()]);
-    });
-    */
 </script>

@@ -48,11 +48,19 @@
     export let cookieId;
     export let cookieAge;
     export let groupsSettings;
+    export let onAccepted;
 
     // reactive props
     let isActive = !hasAcceptedCookies(cookieId);
-    let selectedCookies = [];
+    // the required cookies the ones that will be by default checked
+    let selectedCookies = groupsSettings && groupsSettings.groups ? groupsSettings.groups.reduce((acc, group) => {
+        if (group.required) {
+            return [...acc, ...group.cookies.map(cookie => cookie.id)];
+        }
+        return acc;
+    }, []) : [];
     let isTableVisible = false;
+
 
     // public methods
     export function toggleTable() {
@@ -62,6 +70,10 @@
     export function acceptCookies() {
         createCookie(cookieId, selectedCookies, { age: cookieAge });
         isActive = !hasAcceptedCookies(cookieId);
+
+        if (onAccepted) {
+            onAccepted(selectedCookies);
+        }
     }
 </script>
 

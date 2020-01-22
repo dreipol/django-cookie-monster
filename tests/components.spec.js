@@ -113,4 +113,32 @@ describe('Cookie Banner Components', () => {
         expect(createCookieMonster.__.hasAcceptedCookies('hello')).to.be.ok;
         component.$destroy();
     });
+
+    it('The onAccepted callback is properly called', done => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div, {
+            cookieAge: 1000,
+            cookieId: 'goodbye',
+            groupsSettings: {
+                rows: [],
+                groups: [{
+                    required: true,
+                    name: 'test',
+                    cookies: [{
+                        id: 'gtm',
+                    }],
+                }],
+            },
+            onAccepted(cookies) {
+                expect(cookies).to.contain('gtm');
+                done();
+            },
+        });
+
+        component.acceptCookies();
+
+        expect(createCookieMonster.__.hasAcceptedCookies('goodbye')).to.be.ok;
+
+        component.$destroy();
+    });
 });
