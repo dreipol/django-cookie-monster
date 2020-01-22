@@ -1,6 +1,9 @@
-<div id="cookie_monster"></div>
+{% load static %}
 
-<link rel="stylesheet" href="{% static "cookie_monster/css/minimal.css" %}"/>
+<div id="cookie_monster"></div>
+{% if not COOKIE_CUSTOM_THEME %}
+    <link rel="stylesheet" href="{% static "cookie_monster/css/minimal.css" %}"/>
+{% endif %}
 <script src="{% static "cookie_monster/js/cookie-monster.umd.js" %}"></script>
 
 <script>
