@@ -23,7 +23,10 @@
     "test-with-cov": "nyc npm run test"
   },
   "nyc": {
-    "extension": [".svelte", ".js"]
+    "extension": [
+      ".svelte",
+      ".js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -69,6 +72,7 @@
     "svelte": "^3.17.1"
   },
   "dependencies": {
+    "core-js": "^3.6.4",
     "svelte-i18n": "^2.2.3"
   }
 }

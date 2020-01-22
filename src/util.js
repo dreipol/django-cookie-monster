@@ -31,4 +31,4 @@ export function hasAcceptedCookies(cookieId) {
  * @param {Array} arr - target array
  * @return {Array} cleaned up array
  */
-export const arrayUniq = arr => Array.from(new Set(arr));
+export const arrayUniq = arr => arr.filter((v, i, a) => a.indexOf(v) === i);

@@ -45,10 +45,10 @@ export default {
             },
         }),
         babel({
-            include: ['src/**', 'node_modules/svelte/**'],
+            include: ['src/**', 'node_modules/**'],
             extensions: ['.js', '.mjs', '.html', '.svelte'],
         }),
-        terser(),
+       terser(),
     ],
     onwarn(warning, warn) {
         if (warning.code === 'THIS_IS_UNDEFINED') {
