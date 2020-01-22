@@ -4,7 +4,9 @@ import * as util from './util';
 
 const isDevelopment = typeof process !== 'undefined' && process.env.NODE_ENV === 'development'; // eslint-disable-line
 
-export const __ = util;
+// expose the util as static function attribute
+cookieMonsterFactory.__ = util;
+
 export default function cookieMonsterFactory(el, props = {}) {
     const { languages } = props;
 
