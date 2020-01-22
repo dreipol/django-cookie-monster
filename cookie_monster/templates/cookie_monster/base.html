@@ -1,0 +1,25 @@
+<div id="cookie_monster"></div>
+
+<link rel="stylesheet" href="{% static "cookie_monster/css/minimal.css" %}"/>
+<script src="{% static "cookie_monster/js/cookie-monster.umd.js" %}"></script>
+
+<script>
+    var cm = cookieMonster(document.querySelector('#cookie_monster'), {
+        languages: {
+            en: {
+                title: '{{ COOKIE_BASE.cookie_title }}',
+                text: 'We use cookies to personalise content and ads, to provide social media features and to analyse our traffic only with your explicit consent. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services. We do not set any non-technical cookies until you have given your explicit consent (<a href="http://example.com">Privacy Policy</a>).&nbsp;',
+                buttons: {
+                    accept: {
+                        label: 'Please accept my cookies'
+                    },
+                    table_toggle: {
+                        label: "Toggle the advanced cookie settings"
+                    }
+                }
+            }
+        },
+        cookieId: '{{ COOKIE_BASE.cookie_identifier }}',
+        cookieAge: {{ COOKIE_BASE.cookie_age }},
+    });
+</script>

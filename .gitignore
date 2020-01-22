@@ -50,7 +50,6 @@ docs/_build
 node_modules
 
 # generated files
-cookie_monster/static/
 .nyc_output/
 coverage/
 

@@ -4,24 +4,28 @@
             <dt class="cookie-monster--group-title" on:click={() => toggleGroup(group)}
                     tabindex="0"
                     aria-expanded={ openedGroups.includes(group) ? 'true' : 'false'}>
-                <div class="cookie-monster--group-title-text">
-                    {$_('groups.title', {
-                    default: `${group.title} (${group.cookies.length})`,
-                        values: {
-                            groupTitle: group.title,
-                            amount: group.cookies.length
-                        }
-                    })}
-                </div>
-                <button class="cookie-monster--btn cookie-monster--btn__accept-all-group-cookies"
-                        on:click|stopPropagation={() => acceptAllCookiesGroup(group)}>
-                    {$_('buttons.accept_all_cookies.label', {
-                        default: `Accept All ${group.title} Cookies`,
-                        values: {
-                            groupTitle: group.title
-                        }
-                    })}
-                </button>
+
+                    <div class="cookie-monster--group-title-text">
+                        {$_('groups.title', {
+                        default: `${group.title} (${group.cookies.length})`,
+                            values: {
+                                groupTitle: group.title,
+                                amount: group.cookies.length
+                            }
+                        })}
+                    </div>
+
+                {#if !group.required}
+                    <button class="cookie-monster--btn cookie-monster--btn__accept-all-group-cookies"
+                            on:click|stopPropagation={() => acceptAllCookiesGroup(group)}>
+                        {$_('buttons.accept_all_cookies.label', {
+                            default: `Accept All ${group.title} Cookies`,
+                            values: {
+                                groupTitle: group.title
+                            }
+                        })}
+                    </button>
+                {/if}
             </dt>
             {#if openedGroups.includes(group)}
                 <dd class="cookie-monster--group-description">
@@ -114,7 +118,9 @@
         }
     }
 
+    /*
     onMount(() => {
         selectedCheckboxes = arrayUniq([...selectedCheckboxes, ...getRequiredCookies()]);
     });
+    */
 </script>

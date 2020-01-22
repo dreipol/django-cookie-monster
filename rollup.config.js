@@ -7,7 +7,7 @@ import babel from 'rollup-plugin-babel';
 import postcss from 'postcss';
 
 const postcssConfig = require('./postcss.config');
-const outputRoot = join('cookie_monster', 'static');
+const outputRoot = join('cookie_monster', 'static', 'cookie_monster', 'js');
 const cssCompiler = postcss(postcssConfig.plugins);
 
 export default {
