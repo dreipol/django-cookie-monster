@@ -20,7 +20,10 @@
     "lint": "npm run lint-js && npm run lint-css",
     "pretest": "npm run build",
     "test": "mocha -r esm -r jsdom-global/register tests/*.spec.js",
-    "test-with-cov": "nyc --extension .svelte npm run test"
+    "test-with-cov": "nyc npm run test"
+  },
+  "nyc": {
+    "extension": [".svelte", ".js"]
   },
   "repository": {
     "type": "git",

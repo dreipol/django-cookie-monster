@@ -14,15 +14,19 @@
                         bind:selectedCheckboxes={selectedCookies}/>
             {/if}
 
-            <div class="cookie-monster--btn-wrapper">
+            <div class="cookie-monster--btn-group">
                 {#if groupsSettings}
-                    <button on:click={toggleTable} class="cookie-monster--btn cookie-monster--btn__toggle">
-                        {$_('buttons.table_toggle.label', { default: 'Toggle Groups' })}
-                    </button>
+                    <div class="cookie-monster--btn-wrapper">
+                        <button on:click={toggleTable} class="cookie-monster--btn cookie-monster--btn__toggle">
+                            {$_('buttons.table_toggle.label', { default: 'Toggle Groups' })}
+                        </button>
+                    </div>
                 {/if}
-                <button on:click={acceptCookies} class="cookie-monster--btn cookie-monster--btn__confirm">
-                    {$_('buttons.accept.label', { default: 'Accept Cookies' })}
-                </button>
+                <div class="cookie-monster--btn-wrapper">
+                    <button on:click={acceptCookies} class="cookie-monster--btn cookie-monster--btn__confirm">
+                        {$_('buttons.accept.label', { default: 'Accept Cookies' })}
+                    </button>
+                </div>
             </div>
         </div>
     </div>

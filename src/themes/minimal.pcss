@@ -2,9 +2,10 @@
     --button-background-color: #ffffff;
     --button-background-hover-color: #e6e6e9;
     --button-background-active-color: #9999a1;
-    --accept-button-background-color: #c6e8ff;
-    --accept-button-background-hover-color: #e2ebff;
+    --accept-button-background-color: #e1e1e1;
+    --accept-button-background-hover-color: #f6f6f6;
     --border-radius: 4px;
+    --buttons-group-padding: 8px;
 
     & {
         left: 0;
@@ -35,9 +36,10 @@
         }
     }
 
-    .cookie-monster--btn-wrapper {
+    .cookie-monster--btn-group {
         display: flex;
         justify-content: flex-end;
+        margin: calc(var(--buttons-group-padding) * -1);
     }
 
     .cookie-monster--table {
@@ -51,6 +53,17 @@
 
     .cookie-monster--group-description {
         margin: 0;
+    }
+
+    .cookie-monster--group-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    .cookie-monster--btn-wrapper {
+        padding: var(--buttons-group-padding);
     }
 
     /* facets */

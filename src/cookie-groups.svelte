@@ -1,11 +1,26 @@
 <div class="cookie-monster--groups">
     <dl class="cookie-monster--groups-list">
         {#each groups as group}
-            <dt class="cookie-monster--group-title">
-                <button on:click={() => toggleGroup(group)}
-                        class="cookie-monster--btn cookie-monster--btn__accordion cookie-monster--btn__toggle"
-                        aria-expanded={ openedGroups.includes(group) ? 'true' : 'false'}>
-                    {group.title}
+            <dt class="cookie-monster--group-title" on:click={() => toggleGroup(group)}
+                    tabindex="0"
+                    aria-expanded={ openedGroups.includes(group) ? 'true' : 'false'}>
+                <div class="cookie-monster--group-title-text">
+                    {$_('groups.title', {
+                    default: `${group.title} (${group.cookies.length})`,
+                        values: {
+                            groupTitle: group.title,
+                            amount: group.cookies.length
+                        }
+                    })}
+                </div>
+                <button class="cookie-monster--btn cookie-monster--btn__accept-all-group-cookies"
+                        on:click|stopPropagation={() => acceptAllCookiesGroup(group)}>
+                    {$_('buttons.accept_all_cookies.label', {
+                        default: `Accept All ${group.title} Cookies`,
+                        values: {
+                            groupTitle: group.title
+                        }
+                    })}
                 </button>
             </dt>
             {#if openedGroups.includes(group)}
@@ -16,7 +31,8 @@
                             {#each rows as row}
                                 <th scope="col" class="cookie-monster--table-cell">{row}</th>
                             {/each}
-                            <th></th>
+                            <th>
+                            </th>
                         </tr>
                         </thead>
                         <tbody class="cookie-monster--group-body">
@@ -57,6 +73,7 @@
 </style>
 
 <script>
+    import { _ } from 'svelte-i18n';
     import { onMount } from 'svelte';
     import { arrayUniq } from './util';
 
@@ -83,6 +100,10 @@
         } else {
             selectedCheckboxes = [...selectedCheckboxes, cookieId];
         }
+    }
+
+    function acceptAllCookiesGroup(group) {
+        selectedCheckboxes = arrayUniq([...selectedCheckboxes, ...getGroupCookiesIds(group)]);
     }
 
     function toggleGroup(group) {
