@@ -1,6 +1,6 @@
 {#if isActive}
     <div class="cookie-monster" transition:fade="{{ delay: 150, duration: 300 }}">
-        <h3 class="cookie-monster--title">{$_('title', { default: 'Cookie Title' })}</h3>
+        <h1 class="cookie-monster--title">{$_('title', { default: 'Cookie Title' })}</h1>
 
         <div class="cookie-monster--content">
             <p class="cookie-monster--text">

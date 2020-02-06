@@ -1,6 +1,8 @@
 import importlib
+import json
 
 from django import template
+from django.utils.safestring import mark_safe
 
 from cookie_monster.settings import COOKIE_MONSTER_BASE_CONFIG, COOKIE_MONSTER_GROUP_CONFIG, COOKIE_GROUP_WARNING, \
     COOKIE_MONSTER_CUSTOM_THEME
@@ -13,6 +15,7 @@ register = template.Library()
 def cookie_base(context):
     context['COOKIE_BASE'] = COOKIE_MONSTER_BASE_CONFIG
     context['COOKIE_CUSTOM_THEME'] = COOKIE_MONSTER_CUSTOM_THEME
+    context['COOKIE_GROUP'] = mark_safe(json.dumps(COOKIE_MONSTER_GROUP_CONFIG))
     return context
 
 
