@@ -24,13 +24,11 @@
                             {#each rows as row}
                                 <th scope="col" class="cookie-monster--table-cell">{row}</th>
                             {/each}
-                            <th>
-                            </th>
                         </tr>
                         </thead>
                         <tbody class="cookie-monster--group-body">
                         {#each group.cookies as cookie}
-                            <tr class="cookie-monster--table-row">
+                            <tr class="cookie-monster--table-row cookie-monster--table-row__{ group.required ? 'disabled' : 'enabled' }">
                                 {#each cookie.rows as cookieRow}
                                     <td class="cookie-monster--table-cell">
                                         <label class="cookie-monster--table-label" for={cookie.id}>
@@ -39,14 +37,16 @@
                                     </td>
                                 {/each}
                                 <td class="cookie-monster--table-cell">
-                                    <input class="cookie-monster--table-checkbox"
-                                            type="checkbox"
-                                            name={cookie.id}
-                                            checked={selectedCheckboxes.includes(cookie.id)}
-                                            disabled={group.required}
-                                            on:change={ () => onCheckboxClicked(cookie.id) }
-                                            id={cookie.id}
-                                    />
+                                    <label class="cookie-monster--table-label">
+                                        <input class="cookie-monster--table-checkbox"
+                                                type="checkbox"
+                                                name={cookie.id}
+                                                checked={selectedCheckboxes.includes(cookie.id)}
+                                                disabled={group.required}
+                                                on:change={ () => onCheckboxClicked(cookie.id) }
+                                                id={cookie.id}
+                                        />
+                                    </label>
                                 </td>
                             </tr>
                         {/each}

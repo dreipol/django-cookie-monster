@@ -1,31 +1,33 @@
 {#if isActive}
     <div class="cookie-monster" transition:fade="{{ delay: 150, duration: 300 }}">
-        <h1 class="cookie-monster--title">{$_('title', { default: 'Cookie Title' })}</h1>
+        <div class="cookie-monster--container">
+            <h1 class="cookie-monster--title">{$_('title', { default: 'Cookie Title' })}</h1>
 
-        <div class="cookie-monster--content">
-            <p class="cookie-monster--text">
-                {@html $_('text', { default: 'Cookie Text' })}
-            </p>
+            <div class="cookie-monster--content">
+                <p class="cookie-monster--text">
+                    {@html $_('text', { default: 'Cookie Text' })}
+                </p>
 
-            {#if groupsSettings && isTableVisible}
-                <CookieGroups
-                        groups={groupsSettings.groups}
-                        rows={groupsSettings.rows}
-                        bind:selectedCheckboxes={selectedCookies}/>
-            {/if}
+                {#if groupsSettings && isTableVisible}
+                    <CookieGroups
+                            groups={groupsSettings.groups}
+                            rows={groupsSettings.rows}
+                            bind:selectedCheckboxes={selectedCookies}/>
+                {/if}
 
-            <div class="cookie-monster--btn-group">
-                {#if groupsSettings}
+                <div class="cookie-monster--btn-group">
+                    {#if groupsSettings}
+                        <div class="cookie-monster--btn-wrapper">
+                            <button on:click={toggleTable} class="cookie-monster--btn cookie-monster--btn__toggle">
+                                {$_('buttons.table_toggle.label', { default: 'Toggle Groups' })}
+                            </button>
+                        </div>
+                    {/if}
                     <div class="cookie-monster--btn-wrapper">
-                        <button on:click={toggleTable} class="cookie-monster--btn cookie-monster--btn__toggle">
-                            {$_('buttons.table_toggle.label', { default: 'Toggle Groups' })}
+                        <button on:click={acceptCookies} class="cookie-monster--btn cookie-monster--btn__confirm">
+                            {$_('buttons.accept.label', { default: 'Accept Cookies' })}
                         </button>
                     </div>
-                {/if}
-                <div class="cookie-monster--btn-wrapper">
-                    <button on:click={acceptCookies} class="cookie-monster--btn cookie-monster--btn__confirm">
-                        {$_('buttons.accept.label', { default: 'Accept Cookies' })}
-                    </button>
                 </div>
             </div>
         </div>
