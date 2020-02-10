@@ -15,19 +15,14 @@ const isDevelopment = typeof process !== 'undefined' && process.env.NODE_ENV ===
 cookieMonsterFactory.__ = util;
 
 export default function cookieMonsterFactory(el, props = {}) {
-    const { languages } = props;
-
-
     // add locales
-    if (languages) {
-        Object.keys(languages).forEach(lang => addMessages(lang, languages[lang]));
-    }
+    addMessages('custom', props);
 
     // init locale
     init({
-        fallbackLocale: 'en',
+        fallbackLocale: 'custom',
         initialLocale: {
-            navigator: true,
+            navigator: false,
         },
         warnOnMissingMessages: isDevelopment,
     });

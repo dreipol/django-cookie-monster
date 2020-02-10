@@ -18,25 +18,21 @@
     <script src="/cookie_monster/static/cookie_monster/js/cookie-monster.umd.js"></script>
 <script>
     var cm = cookieMonster(document.querySelector('#app'), {
-        languages: {
-            en: {
-                title: 'Hello there please accept our cookies',
-                text: 'We use cookies to personalise content and ads, to provide social media features and to analyse our traffic only with your explicit consent. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services. We do not set any non-technical cookies until you have given your explicit consent (<a href="http://example.com">Privacy Policy</a>).&nbsp;',
-                groups: {
-                    title: "{groupTitle} list ({amount})"
-                },
-                buttons: {
-                    accept: {
-                        label: 'Please accept this cookie',
-                    },
-                    table_toggle: {
-                        label: 'Toggle the advanced cookie settings',
-                    },
-                   accept_all_cookies: {
-                        label: 'Accept {groupTitle} Cookies'
-                    }
-                },
+        title: 'Hello there please accept our cookies',
+        text: 'We use cookies to personalise content and ads, to provide social media features and to analyse our traffic only with your explicit consent. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services. We do not set any non-technical cookies until you have given your explicit consent (<a href="http://example.com">Privacy Policy</a>).&nbsp;',
+        groups: {
+            title: "{groupTitle} list ({amount})"
+        },
+        buttons: {
+            accept: {
+                label: 'Please accept this cookie',
             },
+            table_toggle: {
+                label: 'Toggle the advanced cookie settings',
+            },
+           accept_all_cookies: {
+                label: 'Accept {groupTitle} Cookies'
+            }
         },
         onAccepted: function(cookies) {
             console.log(cookies);

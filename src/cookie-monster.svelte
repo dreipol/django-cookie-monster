@@ -1,11 +1,11 @@
 {#if isActive}
     <div class="cookie-monster" transition:fade="{{ delay: 150, duration: 300 }}">
         <div class="cookie-monster--container">
-            <h1 class="cookie-monster--title">{$_('title', { default: 'Cookie Title' })}</h1>
+            <h1 class="cookie-monster--title">{$_('title')}</h1>
 
             <div class="cookie-monster--content">
                 <p class="cookie-monster--text">
-                    {@html $_('text', { default: 'Cookie Text' })}
+                    {@html $_('text')}
                 </p>
 
                 {#if groupsSettings && isTableVisible}
@@ -19,13 +19,13 @@
                     {#if groupsSettings}
                         <div class="cookie-monster--btn-wrapper">
                             <button on:click={toggleTable} class="cookie-monster--btn cookie-monster--btn__toggle">
-                                {$_('buttons.table_toggle.label', { default: 'Toggle Groups' })}
+                                {$_('buttons.table_toggle.label')}
                             </button>
                         </div>
                     {/if}
                     <div class="cookie-monster--btn-wrapper">
                         <button on:click={acceptCookies} class="cookie-monster--btn cookie-monster--btn__confirm">
-                            {$_('buttons.accept.label', { default: 'Accept Cookies' })}
+                            {$_('buttons.accept.label')}
                         </button>
                     </div>
                 </div>

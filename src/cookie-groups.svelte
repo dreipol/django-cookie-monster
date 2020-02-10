@@ -82,7 +82,6 @@
 
     function getDefaultTitleText(group) {
         return {
-            default: `${ group.title } (${ group.cookies.length })`,
             values: {
                 groupTitle: group.title,
                 amount: group.cookies.length,
@@ -92,7 +91,6 @@
 
     function getDefaultAcceptAllGroupCookiesTitle(group) {
         return {
-            default: `Accept All ${ group.title } Cookies`,
             values: {
                 groupTitle: group.title,
             },
