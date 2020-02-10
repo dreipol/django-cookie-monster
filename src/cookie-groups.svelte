@@ -6,7 +6,7 @@
                     aria-expanded={ openedGroups.includes(group) ? 'true' : 'false'}>
 
                 <div class="cookie-monster--group-title-text">
-                    {$_('groups.title', getDefaultTitleText(group))}
+                    {$_('accordion_title', getDefaultTitleText(group))}
                 </div>
 
                 {#if !group.required}
