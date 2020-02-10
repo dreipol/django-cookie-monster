@@ -21,10 +21,8 @@ def get_settings_variable(nested_keys, default, obj=COOKIE_MONSTER):
     if current_key in obj:
         if nested_keys:
             return get_settings_variable(nested_keys=nested_keys, default=default, obj=obj[current_key])
-        else:
-            return obj[current_key]
-    else:
-        return default
+        return obj[current_key]
+    return default
 
 
 def get_banner_text():
