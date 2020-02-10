@@ -7,22 +7,76 @@
 <script src="{% static "cookie_monster/js/cookie-monster.umd.js" %}"></script>
 
 <script>
-    var cm = cookieMonster(document.querySelector('#cookie_monster'), {
-        languages: {
-            en: {
-                title: '{{ COOKIE_BASE.cookie_title }}',
-                text: 'We use cookies to personalise content and ads, to provide social media features and to analyse our traffic only with your explicit consent. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services. We do not set any non-technical cookies until you have given your explicit consent (<a href="http://example.com">Privacy Policy</a>).&nbsp;',
-                buttons: {
-                    accept: {
-                        label: 'Please accept my cookies'
-                    },
-                    table_toggle: {
-                        label: "Toggle the advanced cookie settings"
-                    }
-                }
+    // Callback called if the user has accepted the cookies
+    function onAccepted(acceptedCookies) {
+        // select all the scripts that we want asynchronously inject
+        var blocks = Array.prototype.slice.call(document.querySelectorAll('script')).map(function(script) {
+            var consentData = script.getAttribute('data-cookieconsent');
+
+            if (consentData) return [script, consentData];
+
+            return null;
+        }).filter(Boolean); // remove the non cookie scripts
+
+        // loop all the scripts detected to eventually inject them
+        blocks.forEach(function(item) {
+            var script = item[0];
+            var consentData = item[1];
+            var node = document.createElement('script');
+
+            if (acceptedCookies.indexOf(consentData) !== -1) {
+                node.text = script.text;
+                // remove the old script
+                script.parentNode.removeChild(script);
+                // append the new one
+                document.body.appendChild(node);
             }
-        },
-        cookieId: '{{ COOKIE_BASE.cookie_identifier }}',
-        cookieAge: {{ COOKIE_BASE.cookie_age }},
-    });
+        });
+    }
+
+    // the a cookie value
+    function getCookie(name) {
+        var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return v ? v[2] : '';
+    }
+
+    // get teh cookie monster value
+    function getCookieMonsterValue() {
+        if (navigator && navigator.cookieEnabled && document.cookie) {
+            return getCookie('{{ COOKIE_BASE.cookie_identifier }}');
+        }
+
+        return '';
+    }
+
+    var cookieValue = getCookieMonsterValue();
+
+    if (cookieValue) {
+        // the cookies were previously accepted so we can load the scripts
+        onAccepted(cookieValue.split(','));
+    } else {
+        // we show the cookie monster to let users accept the cookies policy
+        var cm = cookieMonster(document.querySelector('#cookie_monster'), {
+            title: '{{ COOKIE_BASE.cookie_title }}',
+            text: 'We use cookies to personalise content and ads, to provide social media features and to analyse our traffic only with your explicit consent. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services. We do not set any non-technical cookies until you have given your explicit consent (<a href="http://example.com">Privacy Policy</a>).&nbsp;',
+            groups: {
+                title: "{groupTitle} list ({amount})"
+            },
+            buttons: {
+                accept: {
+                    label: 'Please accept this cookie',
+                },
+                table_toggle: {
+                    label: 'Toggle the advanced cookie settings',
+                },
+                accept_all_cookies: {
+                    label: 'Accept {groupTitle} Cookies'
+                }
+            },
+            onAccepted: onAccepted,
+            cookieId: '{{ COOKIE_BASE.cookie_identifier }}',
+            cookieAge: {{ COOKIE_BASE.cookie_age }},
+            groupsSettings: {{ COOKIE_GROUP }}
+        });
+    }
 </script>
