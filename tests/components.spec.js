@@ -64,11 +64,7 @@ describe('Cookie Banner Components', () => {
         const component = createCookieMonster(div, {
             cookieAge: 1000,
             cookieId: 'hello',
-            languages: {
-                en: {
-                    title: 'halli hallo',
-                },
-            },
+            title: 'halli hallo',
         });
 
         const title = div.querySelector('.cookie-monster--title');
