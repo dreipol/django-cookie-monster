@@ -1,7 +1,7 @@
 {% load static %}
 
 <div id="cookie_monster"></div>
-{% if not COOKIE_CUSTOM_THEME %}
+{% if not cookie_monster_custom_theme %}
     <link rel="stylesheet" href="{% static "cookie_monster/css/minimal.css" %}"/>
 {% endif %}
 <script src="{% static "cookie_monster/js/cookie-monster.umd.js" %}"></script>
@@ -57,24 +57,24 @@
     } else {
         // we show the cookie monster to let users accept the cookies policy
         var cm = cookieMonster(document.querySelector('#cookie_monster'), {
-            title: '{{ COOKIE_BASE.cookie_title }}',
-            text: 'We use cookies to personalise content and ads, to provide social media features and to analyse our traffic only with your explicit consent. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services. We do not set any non-technical cookies until you have given your explicit consent (<a href="http://example.com">Privacy Policy</a>).&nbsp;',
-            accordion_title:  "{groupTitle} list ({amount})",
+            title: '{{ cookie_monster.banner.title }}',
+            text: '{{ cookie_monster.banner.text }}',
+            accordion_title: '{{ cookie_monster.accordion_title }}',
             buttons: {
                 accept: {
-                    label: 'Please accept this cookie',
+                    label: '{{ cookie_monster.buttons.confirm.label }}'
                 },
                 table_toggle: {
-                    label: 'Toggle the advanced cookie settings',
+                    label: '{{ cookie_monster.buttons.toggle.label }}'
                 },
                 accept_all_cookies: {
-                    label: 'Accept {groupTitle} Cookies'
+                    label: '{{ cookie_monster.buttons.accept_all.label }}'
                 }
             },
             onAccepted: onAccepted,
-            cookieId: '{{ COOKIE_BASE.cookie_identifier }}',
-            cookieAge: {{ COOKIE_BASE.cookie_age }},
-            groupsSettings: {{ COOKIE_GROUP }}
+            cookieId: '{{ cookie_monster.cookie.identifier }}',
+            cookieAge: '{{ cookie_monster.cookie.age }}',
+            groupsSettings: {{ cookie_monster_groups }}
         });
     }
 </script>

@@ -1,9 +1,10 @@
 from django.conf import settings
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
+from cookie_monster.utils import get_callable
 
 COOKIE_MONSTER = getattr(settings, 'COOKIE_MONSTER')
-COOKIE_GROUP_WARNING = _('Please set the cookie_group configuration in your settings.py')
 
 
 def get_settings_variable(nested_keys, default, obj=COOKIE_MONSTER):
@@ -26,25 +27,38 @@ def get_settings_variable(nested_keys, default, obj=COOKIE_MONSTER):
         return default
 
 
+def get_banner_text():
+    text = get_settings_variable(['banner', 'text'], _('This website uses cookies to provide you with an optimal user '
+                                                       'experience.'))
+    policy_link_callable = get_settings_variable(['banner', 'policy_link'], '')
+    if policy_link_callable:
+        text = mark_safe(text.format(policy_link=get_callable(policy_link_callable)()))
+    return text
+
+
 COOKIE_MONSTER_BASE_CONFIG = {
-    'cookie_identifier': get_settings_variable(['cookie', 'identifier'], _('cookie_consent')),
-    'cookie_age': get_settings_variable(['cookie', 'age'], 604800),
-    'banner_title': get_settings_variable(['banner', 'title'], _('Cookie Banner')),
-    'banner_text': get_settings_variable(['banner', 'text'],
-                                         _('This website uses cookies to provide you with an optimal user experience.')),
-    'cookie_policy': {
-        'help_text': get_settings_variable(['banner', 'cookie_policy', 'text'], _('For more information read our')),
-        'href_callable': get_settings_variable(['banner', 'cookie_policy', 'href_callable'], _('')),
-        'label': get_settings_variable(['banner', 'cookie_policy', 'label'], _('Cookie Police')),
+    'banner': {
+        'title': get_settings_variable(['banner', 'title'], _('Cookie Banner')),
+        'text': get_banner_text(),
     },
-    'button_labels': {
-        'cookie_base_button_label': get_settings_variable(['banner', 'buttons', 'base_button'], _('Confirm')),
-        'cookie_group_set_all_button_label': get_settings_variable(['banner', 'buttons', 'group_buttons', 'set_all_button'],
-                                                                   _('Confirm all')),
-        'cookie_group_set_choice_button_label': get_settings_variable(['banner', 'buttons', 'group_buttons', 'set_choice_button'],
-                                                                      _('Confirm selection')),
+    'cookie': {
+        'identifier': get_settings_variable(['cookie', 'identifier'], _('cookie_consent')),
+        'age': get_settings_variable(['cookie', 'age'], 604800),
+    },
+    'accordion_title': get_settings_variable(['accordion_title'], _('{groupTitle} ({amount})')),
+    'buttons': {
+        'confirm': {
+            'label': get_settings_variable(['banner', 'buttons', 'confirm', 'label'], _('Accept all cookies')),
+        },
+        'toggle': {
+            'label': get_settings_variable(['banner', 'buttons', 'toggle', 'label'], _('Toggle settings')),
+        },
+        'accept_all': {
+            'label': get_settings_variable(['banner', 'buttons', 'accept_all', 'label'],
+                                           _('Accept {groupTitle} Cookies')),
+        },
     },
 }
 
-COOKIE_MONSTER_CUSTOM_THEME = get_settings_variable(['banner', 'custom_theme'], False)
-COOKIE_MONSTER_GROUP_CONFIG = get_settings_variable(['cookie_group'], [])
+COOKIE_MONSTER_CUSTOM_THEME = get_settings_variable(['custom_theme'], False)
+COOKIE_MONSTER_GROUPS = get_settings_variable(['cookie_groups'], [])
