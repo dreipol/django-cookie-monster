@@ -54,7 +54,7 @@ describe('Cookie Banner Components', () => {
 
         const buttons = div.querySelectorAll('button');
 
-        expect(buttons).to.have.length(2);
+        expect(buttons).to.have.length(3);
 
         component.$destroy();
     });
@@ -134,6 +134,34 @@ describe('Cookie Banner Components', () => {
         component.acceptCookies();
 
         expect(createCookieMonster.__.hasAcceptedCookies('goodbye')).to.be.ok;
+
+        component.$destroy();
+    });
+
+    it('The accept all cookies button works as expected', done => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div, {
+            cookieAge: 1000,
+            cookieId: 'goodbye-all',
+            groupsSettings: {
+                rows: [],
+                groups: [{
+                    required: false,
+                    name: 'test',
+                    cookies: [{
+                        id: 'gtm',
+                    }],
+                }],
+            },
+            onAccepted(cookies) {
+                expect(cookies).to.contain('gtm');
+                done();
+            },
+        });
+
+        component.acceptAllCookies();
+
+        expect(createCookieMonster.__.hasAcceptedCookies('goodbye-all')).to.be.ok;
 
         component.$destroy();
     });

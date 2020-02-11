@@ -51,12 +51,12 @@ COOKIE_MONSTER_BASE_CONFIG = {
         'toggle': {
             'label': get_settings_variable(['banner', 'buttons', 'toggle', 'label'], _('Toggle settings')),
         },
-        'accept_all': {
-            'label': get_settings_variable(['banner', 'buttons', 'accept_all', 'label'],
+        'accept_all_cookies': {
+            'label': get_settings_variable(['banner', 'buttons', 'accept_all_cookies', 'label'],
                                            _('Accept Cookies')),
         },
-        'accept_all_group': {
-            'label': get_settings_variable(['banner', 'buttons', 'accept_all_group', 'label'],
+        'accept_all_group_cookies': {
+            'label': get_settings_variable(['banner', 'buttons', 'accept_all_group_cookies', 'label'],
                                            _('Accept {groupTitle} Cookies')),
         },
     },
