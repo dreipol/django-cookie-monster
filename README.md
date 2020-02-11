@@ -1,6 +1,8 @@
 # django-cookie-monster
 
+[![CircleCI](https://circleci.com/gh/dreipol/django-cookie-monster.svg?style=svg)](https://circleci.com/gh/dreipol/django-cookie-monster)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3032662f751343e49710/maintainability)](https://codeclimate.com/github/dreipol/django-cookie-monster/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/dreipol/django-cookie-monster/badge.svg?branch=develop)](https://coveralls.io/github/dreipol/django-cookie-monster?branch=develop)
 
 This package gives you two versions of a cookie banner. The simple one is basically just a hint to inform users 
 that you are using cookies. The group version let's your users decide which cookies he needs.
