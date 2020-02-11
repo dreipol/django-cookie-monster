@@ -97,7 +97,7 @@ This is an example of a fully customised version of a cookie banner:
 COOKIE_MONSTER = {
     'banner': {
         'title': 'My Cookie Banner Title',
-        'text': 'This is my custom text with a dynamic <a href="{policy_link}">link</a> to another page.',
+        'text': 'This is my custom text with a dynamic <a href="https://example.com/">link</a> to another page.',
         'policy_link': 'contents.utils.my_callable_that_returns_a_dynamic_link_to_the_privacy_page',
         'buttons': {
             'confirm': {'label': 'Accept all cookies'},
