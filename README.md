@@ -100,7 +100,8 @@ COOKIE_MONSTER = {
         'buttons': {
             'confirm': {'label': 'Accept all cookies'},
             'toggle': {'label': 'Toggle settings'},
-            'accept_all_cookies': {'label': 'Accept {groupTitle} Cookies'}
+            'accept_all_cookies': {'label': 'Accept all Cookies'},
+            'accept_all_group_cookies': {'label': 'Accept {groupTitle} Cookies'}
         },
     },
     'accordion_title': '{groupTitle} ({amount})',

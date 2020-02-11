@@ -12,7 +12,7 @@
                 {#if !group.required}
                     <button class="cookie-monster--btn cookie-monster--btn__accept-all-group-cookies"
                             on:click|stopPropagation={() => acceptAllCookiesGroup(group)}>
-                        {$_('buttons.accept_all_cookies.label', getDefaultAcceptAllGroupCookiesTitle(group))}
+                        {$_('buttons.accept_all_group_cookies.label', getDefaultAcceptAllGroupCookiesTitle(group))}
                     </button>
                 {/if}
             </dt>

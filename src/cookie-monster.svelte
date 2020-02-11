@@ -28,6 +28,13 @@
                             {$_('buttons.accept.label')}
                         </button>
                     </div>
+                    {#if groupsSettings}
+                        <div class="cookie-monster--btn-wrapper">
+                            <button on:click={acceptAllCookies} class="cookie-monster--btn cookie-monster--btn__accept-all">
+                                {$_('buttons.accept_all_cookies.label')}
+                            </button>
+                        </div>
+                    {/if}
                 </div>
             </div>
         </div>
@@ -52,21 +59,29 @@
     export let groupsSettings;
     export let onAccepted;
 
+    // private variables
+    const cookieGroups = groupsSettings && groupsSettings.groups ? groupsSettings.groups : [];
+
     // reactive props
     let isActive = !hasAcceptedCookies(cookieId);
     // the required cookies the ones that will be by default checked
-    let selectedCookies = groupsSettings && groupsSettings.groups ? groupsSettings.groups.reduce((acc, group) => {
+    let selectedCookies = cookieGroups.reduce((acc, group) => {
         if (group.required) {
             return [...acc, ...group.cookies.map(cookie => cookie.id)];
         }
         return acc;
-    }, []) : [];
+    }, []);
     let isTableVisible = false;
 
 
     // public methods
     export function toggleTable() {
         isTableVisible = !isTableVisible;
+    }
+
+    export function acceptAllCookies() {
+        selectedCookies = cookieGroups.reduce((acc, group) => [...acc, ...group.cookies.map(cookie => cookie.id)], []);
+        acceptCookies();
     }
 
     export function acceptCookies() {

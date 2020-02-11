@@ -53,6 +53,10 @@ COOKIE_MONSTER_BASE_CONFIG = {
         },
         'accept_all': {
             'label': get_settings_variable(['banner', 'buttons', 'accept_all', 'label'],
+                                           _('Accept Cookies')),
+        },
+        'accept_all_group': {
+            'label': get_settings_variable(['banner', 'buttons', 'accept_all_group', 'label'],
                                            _('Accept {groupTitle} Cookies')),
         },
     },
