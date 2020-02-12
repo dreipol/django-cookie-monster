@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-10 15:30+0100\n"
+"POT-Creation-Date: 2020-02-12 08:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: dreipol GmbH <dev@dreipol.ch>\n"
 "Language-Team: DE <dev@dreipol.ch>\n"
@@ -17,35 +17,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: settings.py:31
+#: settings.py:29
 msgid ""
 "This website uses cookies to provide you with an optimal user experience."
 msgstr ""
 "Diese Webseite verwendet Cookies, um Ihnen ein optimales Nutzererlebnis zu "
 "bieten."
 
-#: settings.py:41
+#: settings.py:39
 msgid "Cookie Banner"
 msgstr "Cookie Einstellungen"
 
-#: settings.py:45
+#: settings.py:43
 msgid "cookie_consent"
 msgstr "cookie_consent"
 
-#: settings.py:48
+#: settings.py:46
 #, python-brace-format
 msgid "{groupTitle} ({amount})"
 msgstr "{groupTitle} ({amount})"
 
-#: settings.py:51
+#: settings.py:49 settings.py:56
 msgid "Accept all cookies"
 msgstr "Alle akzeptieren"
 
-#: settings.py:54
+#: settings.py:52
 msgid "Toggle settings"
 msgstr "Details auf/zuklappen"
 
-#: settings.py:58
+#: settings.py:60
 #, python-brace-format
-msgid "Accept {groupTitle} Cookies"
+msgid "Accept {groupTitle} cookies"
 msgstr "{groupTitle} Cookies akzeptieren"
