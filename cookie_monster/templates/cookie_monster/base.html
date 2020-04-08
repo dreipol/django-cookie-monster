@@ -43,7 +43,7 @@
     // get teh cookie monster value
     function getCookieMonsterValue() {
         if (navigator && navigator.cookieEnabled && document.cookie) {
-            return getCookie('{{ COOKIE_BASE.cookie_identifier }}');
+            return getCookie('{{ cookie_monster.cookie.identifier }}');
         }
 
         return '';
