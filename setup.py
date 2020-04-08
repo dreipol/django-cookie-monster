@@ -49,6 +49,7 @@ setup(
     version=version,
     description="""Your project description goes here""",
     long_description=readme + '\n\n' + history,
+    long_description_content_type='text/markdown',
     author='dreipol GmbH',
     author_email='dev@dreipol.ch',
     url='https://github.com/victoriameyer/django-cookie-monster',
