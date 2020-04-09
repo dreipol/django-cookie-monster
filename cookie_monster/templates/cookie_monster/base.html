@@ -7,6 +7,9 @@
 <script src="{% static "cookie_monster/js/cookie-monster.umd.js" %}"></script>
 
 <script>
+    // borrowed from https://gist.github.com/dciccale/4087856
+    var DOMReady = function(a,b,c){b=document,c='addEventListener';b[c]?b[c]('DOMContentLoaded',a):window.attachEvent('onload',a)};
+
     // Callback called if the user has accepted the cookies
     function onAccepted(acceptedCookies) {
         // select all the scripts that we want asynchronously inject
@@ -53,7 +56,9 @@
 
     if (cookieValue) {
         // the cookies were previously accepted so we can load the scripts
-        onAccepted(cookieValue.split(','));
+        DOMReady(function() {
+            onAccepted(cookieValue.split(','));
+        });
     } else {
         // we show the cookie monster to let users accept the cookies policy
         var cm = cookieMonster(document.querySelector('#cookie_monster'), {
