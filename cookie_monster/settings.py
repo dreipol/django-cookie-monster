@@ -1,4 +1,6 @@
+import six
 from django.conf import settings
+from django.utils.functional import lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
@@ -37,7 +39,7 @@ def get_banner_text():
 COOKIE_MONSTER_BASE_CONFIG = {
     'banner': {
         'title': get_settings_variable(['banner', 'title'], _('Cookie Banner')),
-        'text': get_banner_text(),
+        'text': lazy(get_banner_text, six.text_type)(),
     },
     'cookie': {
         'identifier': get_settings_variable(['cookie', 'identifier'], _('cookie_consent')),
