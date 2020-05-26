@@ -33,13 +33,13 @@ def get_banner_text():
     policy_link_callable = get_settings_variable(['banner', 'policy_link'], '')
     if policy_link_callable:
         text = mark_safe(text.format(policy_link=get_callable(policy_link_callable)()))
-    return text
+    return text.replace("'", r"\'")
 
 
 COOKIE_MONSTER_BASE_CONFIG = {
     'banner': {
         'title': get_settings_variable(['banner', 'title'], _('Cookie Banner')),
-        'text': lazy(get_banner_text, six.text_type)(),
+        'text': lazy(get_banner_text)(),
     },
     'cookie': {
         'identifier': get_settings_variable(['cookie', 'identifier'], _('cookie_consent')),
