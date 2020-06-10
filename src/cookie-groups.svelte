@@ -6,13 +6,13 @@
                     aria-expanded={ openedGroups.includes(group) ? 'true' : 'false'}>
 
                 <div class="cookie-monster--group-title-text">
-                    {$_('accordion_title', getDefaultTitleText(group))}
+                    {t('accordion_title', getDefaultTitleText(group))}
                 </div>
 
                 {#if !group.required}
                     <button class="cookie-monster--btn cookie-monster--btn__accept-all-group-cookies"
                             on:click|stopPropagation={() => acceptAllCookiesGroup(group)}>
-                        {$_('buttons.accept_all_group_cookies.label', getDefaultAcceptAllGroupCookiesTitle(group))}
+                        {t('buttons.accept_all_group_cookies.label', getDefaultAcceptAllGroupCookiesTitle(group))}
                     </button>
                 {/if}
             </dt>
@@ -66,8 +66,7 @@
 </style>
 
 <script>
-    import { _ } from 'svelte-i18n';
-    import { arrayUniq } from './util';
+    import { arrayUniq, translate } from './util';
 
     // external properties
     export let rows;
@@ -79,6 +78,9 @@
     let openedGroups = [];
 
     const getGroupCookiesIds = group => group.cookies.map(({ id }) => id);
+
+    // add the translate function
+    const t = translate;
 
     function getDefaultTitleText(group) {
         return {

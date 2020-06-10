@@ -1,11 +1,11 @@
 {#if isActive}
     <div class="cookie-monster" transition:fade="{{ delay: 150, duration: 300 }}">
         <div class="cookie-monster--container">
-            <h1 class="cookie-monster--title">{$_('title')}</h1>
+            <h1 class="cookie-monster--title">{t('title')}</h1>
 
             <div class="cookie-monster--content">
                 <p class="cookie-monster--text">
-                    {@html $_('text')}
+                    {@html t('text')}
                 </p>
 
                 {#if groupsSettings && isTableVisible}
@@ -19,19 +19,19 @@
                     {#if groupsSettings}
                         <div class="cookie-monster--btn-wrapper">
                             <button on:click={toggleTable} class="cookie-monster--btn cookie-monster--btn__toggle">
-                                {$_('buttons.table_toggle.label')}
+                                {t('buttons.table_toggle.label')}
                             </button>
                         </div>
                     {/if}
                     <div class="cookie-monster--btn-wrapper">
                         <button on:click={acceptCookies} class="cookie-monster--btn cookie-monster--btn__confirm">
-                            {$_('buttons.accept.label')}
+                            {t('buttons.accept.label')}
                         </button>
                     </div>
                     {#if groupsSettings}
                         <div class="cookie-monster--btn-wrapper">
                             <button on:click={acceptAllCookies} class="cookie-monster--btn cookie-monster--btn__accept-all">
-                                {$_('buttons.accept_all_cookies.label')}
+                                {t('buttons.accept_all_cookies.label')}
                             </button>
                         </div>
                     {/if}
@@ -48,7 +48,7 @@
 </style>
 
 <script>
-    import { _ } from 'svelte-i18n';
+    import {translate} from './util';
     import { fade } from 'svelte/transition';
     import CookieGroups from './cookie-groups.svelte';
     import { hasAcceptedCookies, createCookie } from './util';
@@ -73,6 +73,8 @@
     }, []);
     let isTableVisible = false;
 
+    // add the translate function
+    const t = translate;
 
     // public methods
     export function toggleTable() {
