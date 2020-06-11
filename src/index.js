@@ -1,9 +1,9 @@
 // we need to support ie11 :(
 // the following polyfills are needed
-import "core-js/modules/es.promise";
-import "core-js/modules/es.object.assign";
-import "core-js/modules/es.array.fill";
-import "core-js/modules/es.array.includes";
+import 'core-js/modules/es.promise';
+import 'core-js/modules/es.object.assign';
+import 'core-js/modules/es.array.fill';
+import 'core-js/modules/es.array.includes';
 import CookieMonsterComponent from './cookie-monster.svelte';
 
 import * as util from './util';

@@ -43,7 +43,7 @@ const vocabulary = {};
 
 /**
  * Initialize the vocabulary with the user defined properties
- * @param definitions
+ * @param {object} definitions - user defined vocabulary
  * @return {object}
  */
 export const initVocabulary = definitions => Object.assign(vocabulary, definitions);

@@ -48,10 +48,9 @@
 </style>
 
 <script>
-    import {translate} from './util';
     import { fade } from 'svelte/transition';
     import CookieGroups from './cookie-groups.svelte';
-    import { hasAcceptedCookies, createCookie } from './util';
+    import { hasAcceptedCookies, createCookie, translate } from './util';
 
     // Props
     export let cookieId;
