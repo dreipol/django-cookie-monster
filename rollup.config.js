@@ -27,7 +27,10 @@ export default {
         resolve(),
         commonjs(),
         svelte({
-            accessors: true,
+            emitCss: false,
+            compilerOptions: {
+                accessors: true,
+            },
             // Optionally, preprocess components with svelte.preprocess:
             // https://svelte.dev/docs#svelte_preprocess
             preprocess: {
@@ -48,7 +51,7 @@ export default {
             include: ['src/**', 'node_modules/**'],
             extensions: ['.js', '.mjs', '.html', '.svelte'],
         }),
-       terser(),
+        terser(),
     ],
     onwarn(warning, warn) {
         if (warning.code === 'THIS_IS_UNDEFINED') {
