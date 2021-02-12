@@ -32,7 +32,7 @@
                                 {#each cookie.rows as cookieRow}
                                     <td class="cookie-monster--table-cell">
                                         <label class="cookie-monster--table-label" for={cookie.id}>
-                                            {cookieRow}
+                                            {@html cookieRow}
                                         </label>
                                     </td>
                                 {/each}

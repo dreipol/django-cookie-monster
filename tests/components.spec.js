@@ -2,6 +2,15 @@ import { expect } from 'chai';
 import createCookieMonster from '../';
 import { tick } from 'svelte';
 
+// helpers
+function fireEvent(el, name) {
+    const e = document.createEvent('HTMLEvents');
+    e.initEvent(name, false, true);
+    el.dispatchEvent(e);
+}
+
+const randString = () => `cookie-id-${ Math.random() * 1000 }`;
+
 describe('Cookie Banner Components', () => {
     before(() => {
         // patch the requestAnimationFrame method
@@ -17,15 +26,16 @@ describe('Cookie Banner Components', () => {
         component.$destroy();
     });
 
-    it('Properties will be properly handled', () => {
+    it('Properties will be properly handled',  () => {
+        const cookieId = randString();
         const div = document.createElement('div');
         const component = createCookieMonster(div, {
             cookieAge: 1000,
-            cookieId: 'hello',
+            cookieId,
         });
 
         expect(component.cookieAge).to.be.equal(1000);
-        expect(component.cookieId).to.be.equal('hello');
+        expect(component.cookieId).to.be.equal(cookieId);
 
         component.$destroy();
     });
@@ -34,7 +44,7 @@ describe('Cookie Banner Components', () => {
         const div = document.createElement('div');
         const component = createCookieMonster(div, {
             cookieAge: 1000,
-            cookieId: 'hello',
+            cookieId: randString(),
         });
 
         const buttons = div.querySelectorAll('button');
@@ -48,7 +58,7 @@ describe('Cookie Banner Components', () => {
         const div = document.createElement('div');
         const component = createCookieMonster(div, {
             cookieAge: 1000,
-            cookieId: 'hello',
+            cookieId: randString(),
             groupsSettings: {},
         });
 
@@ -63,7 +73,7 @@ describe('Cookie Banner Components', () => {
         const div = document.createElement('div');
         const component = createCookieMonster(div, {
             cookieAge: 1000,
-            cookieId: 'hello',
+            cookieId: randString(),
             title: 'halli hallo',
         });
 
@@ -78,7 +88,7 @@ describe('Cookie Banner Components', () => {
         const div = document.createElement('div');
         const component = createCookieMonster(div, {
             cookieAge: 1000,
-            cookieId: 'hello',
+            cookieId: randString(),
             groupsSettings: {
                 rows: [],
                 groups: [],
@@ -99,22 +109,24 @@ describe('Cookie Banner Components', () => {
 
     it('Accepting cookies should set the custom cookie id', () => {
         const div = document.createElement('div');
+        const cookieId = randString();
         const component = createCookieMonster(div, {
             cookieAge: 1000,
-            cookieId: 'hello',
+            cookieId,
         });
 
         component.acceptCookies();
 
-        expect(createCookieMonster.__.hasAcceptedCookies('hello')).to.be.ok;
+        expect(createCookieMonster.__.hasAcceptedCookies(cookieId)).to.be.ok;
         component.$destroy();
     });
 
     it('The onAccepted callback is properly called', done => {
         const div = document.createElement('div');
+        const cookieId = randString();
         const component = createCookieMonster(div, {
             cookieAge: 1000,
-            cookieId: 'goodbye',
+            cookieId,
             groupsSettings: {
                 rows: [],
                 groups: [{
@@ -133,18 +145,18 @@ describe('Cookie Banner Components', () => {
 
         component.acceptCookies();
 
-        expect(createCookieMonster.__.hasAcceptedCookies('goodbye')).to.be.ok;
+        expect(createCookieMonster.__.hasAcceptedCookies(cookieId)).to.be.ok;
 
         component.$destroy();
     });
 
     it('The accept all cookies button works as expected', done => {
         const div = document.createElement('div');
+        const cookieId = randString();
         const component = createCookieMonster(div, {
             cookieAge: 1000,
-            cookieId: 'goodbye-all',
+            cookieId,
             groupsSettings: {
-                rows: [],
                 groups: [{
                     required: false,
                     name: 'test',
@@ -161,7 +173,43 @@ describe('Cookie Banner Components', () => {
 
         component.acceptAllCookies();
 
-        expect(createCookieMonster.__.hasAcceptedCookies('goodbye-all')).to.be.ok;
+        expect(createCookieMonster.__.hasAcceptedCookies(cookieId)).to.be.ok;
+
+        component.$destroy();
+    });
+
+    it('Cookie rows can be plain HTML', async () => {
+        const div = document.createElement('div');
+        const component = createCookieMonster(div, {
+            cookieAge: 1000,
+            cookieId: randString(),
+            groupsSettings: {
+                rows: [
+                    'Name',
+                ],
+                groups: [{
+                    required: false,
+                    name: 'test',
+                    cookies: [{
+                        id: 'gtm',
+                        rows: ['<strong class="raw-html">Hello</strong>'],
+                    }],
+                }],
+            },
+        });
+
+        component.toggleTable();
+
+        await tick();
+
+        const groupTitle = div.querySelector('.cookie-monster--group-title');
+
+        fireEvent(groupTitle, 'click');
+
+        await tick();
+
+        expect(div.querySelectorAll('.cookie-monster--group-description')).to.have.length;
+        expect(div.querySelector('.raw-html')).to.be.ok;
 
         component.$destroy();
     });
