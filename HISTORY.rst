@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.5 (2021-02-15)
+++++++++++++++++++
+
+* Add plain html support for the groups labels
+
+
 0.1.4 (2020-05-13)
 ++++++++++++++++++
 
