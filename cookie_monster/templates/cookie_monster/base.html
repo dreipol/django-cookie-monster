@@ -37,13 +37,13 @@
         });
     }
 
-    // the a cookie value
+    // get a cookie value
     function getCookie(name) {
         var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
         return v ? v[2] : '';
     }
 
-    // get teh cookie monster value
+    // get the cookie monster value
     function getCookieMonsterValue() {
         if (navigator && navigator.cookieEnabled && document.cookie) {
             return getCookie('{{ cookie_monster.cookie.identifier }}');
