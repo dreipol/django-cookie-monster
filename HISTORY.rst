@@ -3,6 +3,16 @@
 History
 -------
 
+0.1.6 (2022-01-31)
+++++++++++++++++++
+
+* Simplify banner text to prevent fails
+
+DEPRECATION WARNING:
+
+* The setting variable `policy_link` was removed due to errors. Please handle any text/link combinations yourself.
+
+
 0.1.5 (2021-02-15)
 ++++++++++++++++++
 
