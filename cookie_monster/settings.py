@@ -27,19 +27,11 @@ def get_settings_variable(nested_keys, default, obj=COOKIE_MONSTER):
     return default
 
 
-def get_banner_text():
-    text = get_settings_variable(['banner', 'text'], _('This website uses cookies to provide you with an optimal user '
-                                                       'experience.'))
-    policy_link_callable = get_settings_variable(['banner', 'policy_link'], '')
-    if policy_link_callable:
-        text = mark_safe(text.format(policy_link=get_callable(policy_link_callable)()))
-    return text
-
-
 COOKIE_MONSTER_BASE_CONFIG = {
     'banner': {
         'title': get_settings_variable(['banner', 'title'], _('Cookie Banner')),
-        'text': lazy(get_banner_text, six.text_type)(),
+        'text': get_settings_variable(['banner', 'text'], _('This website uses cookies to provide you with an optimal '
+                                                            'user experience.')),
     },
     'cookie': {
         'identifier': get_settings_variable(['cookie', 'identifier'], _('cookie_consent')),
