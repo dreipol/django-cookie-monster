@@ -26,16 +26,18 @@ describe('Cookie Banner Components', () => {
         component.$destroy();
     });
 
-    it('Properties will be properly handled',  () => {
+    it('Properties will be properly handled', () => {
         const cookieId = randString();
         const div = document.createElement('div');
         const component = createCookieMonster(div, {
             cookieAge: 1000,
             cookieId,
+            cookieSameSite: 'None',
         });
 
         expect(component.cookieAge).to.be.equal(1000);
         expect(component.cookieId).to.be.equal(cookieId);
+        expect(component.cookieSameSite).to.be.equal('None');
 
         component.$destroy();
     });

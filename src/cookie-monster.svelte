@@ -57,6 +57,7 @@
     export let cookieAge;
     export let groupsSettings;
     export let onAccepted;
+    export let cookieSameSite;
 
     // private variables
     const cookieGroups = groupsSettings && groupsSettings.groups ? groupsSettings.groups : [];
@@ -86,7 +87,7 @@
     }
 
     export function acceptCookies() {
-        createCookie(cookieId, selectedCookies, { age: cookieAge });
+        createCookie(cookieId, selectedCookies, { age: cookieAge, sameSite: cookieSameSite });
         isActive = !hasAcceptedCookies(cookieId);
 
         if (onAccepted) {
