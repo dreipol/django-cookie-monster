@@ -3,7 +3,7 @@
 History
 -------
 
-0.1.7
+0.1.7 (2022-10-11)
 ++++++++++++++++++
 
 * Add samesite configuration option
