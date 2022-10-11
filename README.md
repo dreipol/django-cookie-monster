@@ -108,6 +108,9 @@ COOKIE_MONSTER = {
         },
     },
     'accordion_title': '{groupTitle} ({amount})',
+    'cookie': {
+        'samesite': 'Lax'
+    },
     'custom_theme': True,
     'cookie_groups': {
         'rows': [

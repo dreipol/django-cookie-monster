@@ -36,6 +36,7 @@ COOKIE_MONSTER_BASE_CONFIG = {
     'cookie': {
         'identifier': get_settings_variable(['cookie', 'identifier'], _('cookie_consent')),
         'age': get_settings_variable(['cookie', 'age'], 604800),
+        'samesite': get_settings_variable(['cookie', 'samesite'], 'Lax'),
     },
     'accordion_title': get_settings_variable(['accordion_title'], _('{groupTitle} ({amount})')),
     'buttons': {

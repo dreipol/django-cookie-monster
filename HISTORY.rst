@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.7
+++++++++++++++++++
+
+* Add samesite configuration option
+
+
 0.1.6 (2022-01-31)
 ++++++++++++++++++
 

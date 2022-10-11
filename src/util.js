@@ -6,12 +6,12 @@ import { get, template } from 'lodash-es';
  * @param {string[]|null} values
  * @param {object} options
  * @param {number} options.age - how long the cookie should be stored
+ * @param {string} options.sameSite - the SameSite setting of the cookie
  */
-export function createCookie(identifier, values, { age }) {
+export function createCookie(identifier, values, { age, sameSite }) {
     const date = new Date((new Date()).getTime() + (age * 1000));
     const cookieVal = (Array.isArray(values) ? values.join(',') : true);
-
-    document.cookie = `${ identifier }=${ cookieVal }; expires=${ date.toUTCString() }; path=/;`;
+    document.cookie = `${ identifier }=${ cookieVal }; expires=${ date.toUTCString() }; path=/; SameSite=${ sameSite }; ${ sameSite === 'None' ? 'Secure' : '' }`;
 }
 
 /**
